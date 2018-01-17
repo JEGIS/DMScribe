@@ -187,9 +187,43 @@ app.get('/specificGroup', (req, res) => {
   })
 })
 
+// ** Password Management ** //
 
+// update an existing password
+app.post('/changePassword', (req, res) => {
+  username = req.body.username;
+  password = req.body.password;
 
+  bcrypt.hash(password, saltRounds).then((hash) => {
+    db.resetPassword(username, hash, (err, success) => {
+      if (err) {
+        res.send(500)
+      } else {
+        res.send(201)
+      }
+    })
+  })
+})
 
+// email a new password
+app.get('/forgotPassword', (req, res) => {
+  username = req.query.username;
+  password = helpers.makeid();
+
+  bcrypt.hash(password, saltRounds).then((hash) => {
+    db.resetPassword(username, hash, (err, user) => {
+      helpers.sendEmail(user.email, password, res)
+      .then((success) => {
+        res.send(success);
+      })
+      .catch((err) => {
+        res.send(err);
+      });
+    })
+  })
+})
+
+// ******** //
 
 
 

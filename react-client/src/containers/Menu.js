@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import {selectTab, setUser, logoutReset} from '../actions/index';
 import styles from 'styled-components';
-
+import { Icon } from 'semantic-ui-react';
 
 const Wrapper = styles.div`
   margin: .7% 8%;
@@ -37,8 +37,10 @@ class Menu extends Component {
                 );
               })}
               <a
-              className='item tabLog'>
-              {this.props.user}
+                className='item tabLog'
+                onClick={() => {this.props.selectTab('AccountInfo')}}
+                >{this.props.user}
+                <i className="setting icon"></i>
               </a>
               <a
                 onClick={() => {

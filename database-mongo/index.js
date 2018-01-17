@@ -115,12 +115,14 @@ var getUserEmail = (username, callback) => {
   })
 }
 
+
 var resetPassword = (username, hash, callback) => {
   User.findOne({ username: username }, function (err, doc){
     if (err) {
       callback(err, null);
     } else {
       //var random = 12345; // make random
+
       doc.password = hash;
       doc.save();
       callback(null, doc)
