@@ -37,8 +37,9 @@ class Menu extends Component {
                 );
               })}
               <a
-              className='item tabLog'>
-              {this.props.user}
+                className='item tabLog'
+                onClick={() => {this.props.selectTab('AccountInfo')}}
+                >{this.props.user}
               </a>
               <a
                 onClick={() => {

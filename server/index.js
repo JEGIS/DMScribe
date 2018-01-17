@@ -93,8 +93,6 @@ app.post('/signUp', (req, res) => {
 })
 
 app.post('/login', (req, res) => {
-  console.log('username: ', req.body.username)
-  console.log('password: ', req.body.password)
   db.getUsers(req.body.username, (err, user) => {
     if (err) {
     } else {
@@ -143,10 +141,8 @@ app.get('/forgot', (req, res) => {
 
       transporter.sendMail(mailOptions, function(error, info){
         if (error) {
-          console.log(error);
           res.send(error)
         } else {
-          console.log('Email sent: ' + info.response);
           res.send('Email sentto: ' + email);
         }
       });
