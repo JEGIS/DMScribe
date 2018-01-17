@@ -53,7 +53,7 @@ class DiceRoller extends Component {
    					Roll D100
    				</Button>
    			</Button.Group>
-   			<div>
+   			<div className = 'roll'>
  					{this.state.roll}
    			</div>
       </div>
