@@ -183,7 +183,20 @@ app.get('/specificGroup', (req, res) => {
   })
 })
 
+app.post('/newPassword', (req, res) => {
+  username = req.body.username;
+  password = req.body.password;
 
+  bcrypt.hash(password, saltRounds).then((hash) => {
+    db.resetPassword(username, hash, (err, success) => {
+      if (err) {
+        res.send(500)
+      } else {
+        res.send(201)
+      }
+    })
+  })
+})
 
 
 

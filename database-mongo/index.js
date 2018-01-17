@@ -103,17 +103,6 @@ var specificGroup = (target, callback) => {
   })
 } 
 
-// var getUserEmail = (username, callback) => {
-//   User.find({username: username}, function (err, users) {
-//     if (err) {
-//       callback(err, null)
-//     } else {
-//       users[0].password = 1234;
-//       callback(null, users);
-//     }
-//   })
-// }
-
 var resetPassword = (username, hash, callback) => {
   User.findOne({ username: username }, function (err, doc){
     if (err) {
@@ -126,10 +115,22 @@ var resetPassword = (username, hash, callback) => {
   });
 }
 
+// var newPassword = (username, hash, callback) => {
+//   User.findOne({ username: username }, function (err, doc){
+//     if (err) {
+//       callback(err, null);
+//     } else {
+//       doc.password = hash;
+//       doc.save();
+//       callback(null, doc)
+//     }
+//   });  
+// }
+
 exports.signUpUser = signUpUser;
 exports.getUsers = getUsers;
 exports.savePlayer = savePlayer;
 exports.getGroups = getGroups;
 exports.specificGroup = specificGroup;
-//exports.getUserEmail = getUserEmail;
 exports.resetPassword = resetPassword;
+//exports.newPassword = newPassword;

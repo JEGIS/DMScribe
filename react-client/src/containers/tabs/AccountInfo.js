@@ -7,6 +7,7 @@ import OrderList from '../orderList';
 import OrderButton from '../buttons/OrderButton';
 import ClearMonsters from '../buttons/ClearMonsters';
 import DropdownExampleSearchSelection from '../SearchBar';
+import $ from 'jquery';
 import styles from 'styled-components';
 import {
   Button,
@@ -22,34 +23,48 @@ import {
   Visibility,
 } from 'semantic-ui-react';
 
-
-const Wrapper = styles.div`
-  margin: .7% 8%;
-`;
-
-
-
 class AccountInfo extends Component {
+  constructor(props) {
+    super(props);
+    this.changePassword= this.changePassword.bind(this);
+  }
+
+  changePassword (event) {
+    event.preventDefault();
+    var user = $(event.target).serializeArray();
+    var userObj = {
+      username: user[0].value,
+      password: user[1].value
+    }
+    $('#loginUsername').val('');
+    $('#loginPassword').val('');
+    $.post('/newPassword', userObj)
+    .then(() => {
+      console.log('Your password has been changed');
+    })
+    .catch(() => {
+      console.log('Wrong username and password');
+    })
+  }
+
   render () {
     if (this.props.currentTab !== 'AccountInfo') {
       return null;
     }
     return (
-          <Grid centered columns={6}>
-            <Grid.Column>
-              <form className="ui form signupForm" onSubmit={(event) => {this.login(event)}}>
-                <div className="field">
-                  <label>Username:</label>
-                  <input type="text" name="username" id='loginUsername'/>
-                </div>
-                <div className="field">
-                  <label>Password:</label>
-                  <input type="password" name="password" id='loginPassword'/>
-                </div>
-                <span><button className="ui button" type="submit">Login!</button></span>
-              </form>
-            </Grid.Column>
-          </Grid>
+      <Grid centered columns={6}>
+        <Grid.Column>
+          <form className="ui form signupForm" onSubmit={(event) => {this.changePassword(event)}}>
+            <div className="field"> Change Password:
+              <input type="text" name="username" id='loginUsername' placeholder="enter username"/>
+            </div>
+            <div className="field">
+              <input placeholder="enter new password" name="password"/>
+            </div>
+            <span><button className="ui button" type="submit">Submit</button></span>
+          </form>
+        </Grid.Column>
+      </Grid>
     );
   }
 }
