@@ -47,6 +47,24 @@ class AccountInfo extends Component {
     })
   }
 
+  changeEmail (event) {
+    event.preventDefault();
+    var user = $(event.target).serializeArray();
+    var userObj = {
+      username: user[0].value,
+      email: user[1].value
+    }
+    $('#loginUsername').val('');
+    $('#loginEmail').val('');
+    $.post('/changeEmail', userObj)
+    .then(() => {
+      console.log('Your email has been changed');
+    })
+    .catch(() => {
+      console.log('Wrong username and password');
+    })
+  }
+
   render () {
     if (this.props.currentTab !== 'AccountInfo') {
       return null;
@@ -60,6 +78,15 @@ class AccountInfo extends Component {
             </div>
             <div className="field">
               <input placeholder="enter new password" name="password"/>
+            </div>
+            <span><button className="ui button" type="submit">Submit</button></span>
+          </form>
+          <form className="ui form signupForm" onSubmit={(event) => {this.changeEmail(event)}}>
+            <div className="field"> Change Email:
+              <input type="text" name="username" id='loginUsername' placeholder="enter username"/>
+            </div>
+            <div className="field">
+              <input placeholder="enter new email" name="email"/>
             </div>
             <span><button className="ui button" type="submit">Submit</button></span>
           </form>

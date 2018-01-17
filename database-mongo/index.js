@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-// mongoose.connect('mongodb://localhost/groups');
+mongoose.connect('mongodb://localhost/groups');
 // var uri = `mongodb://${cred.dbUsername}:${cred.dbPassword}@ds255787.mlab.com:55787/heroku_jhf97sfb`;
 // var cred = require('./dbCredentials');
 
@@ -130,6 +130,18 @@ var resetPassword = (username, hash, callback) => {
   });
 }
 
+var changeEmail = (username, email, callback) => {
+  User.findOne({ username: username }, function (err, doc){
+    if (err) {
+      callback(err, null);
+    } else {
+      doc.email = email;
+      doc.save();
+      callback(null, doc)
+    }
+  });
+}
+
 exports.signUpUser = signUpUser;
 exports.getUsers = getUsers;
 exports.savePlayer = savePlayer;
@@ -137,3 +149,4 @@ exports.getGroups = getGroups;
 exports.specificGroup = specificGroup;
 exports.getUserEmail = getUserEmail;
 exports.resetPassword = resetPassword;
+exports.changeEmail = changeEmail;

@@ -205,6 +205,19 @@ app.post('/changePassword', (req, res) => {
   })
 })
 
+app.post('/changeEmail', (req, res) => {
+  username = req.body.username;
+  email = req.body.email;  
+
+  db.changeEmail(username, email, (err, success) => {
+    if (err) {
+      res.send(500)
+    } else {
+      res.send(201)
+    }
+  })
+})
+
 // email a new password
 app.get('/forgotPassword', (req, res) => {
   username = req.query.username;
