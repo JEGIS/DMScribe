@@ -22,10 +22,7 @@ class DiceRoller extends Component {
 
 	render() {
 		return (
-			<div>
-     		<Grid centered columns={2} textAlign = 'center'>
-     			<Grid.Row>
-     			<Grid.Column>
+			<div className = 'dice'>
 	     			<Button.Group size = 'large'>
 	     				<Button onClick={() => this.handleClick(4)} color = 'red'>
 	     					{this.state.d4}
@@ -56,14 +53,9 @@ class DiceRoller extends Component {
 	     					Roll D100
 	     				</Button>
 	     			</Button.Group>
-     			</Grid.Column>
-     			</Grid.Row>
-     			<Grid.Row>
-     				<Grid.Column className = 'roll' textAlign = 'center'>
+	     			<div>
      					{this.state.roll}
-     				</Grid.Column>
-     			</Grid.Row>
-     		</Grid>
+	     			</div>
       </div>
 		)
 	}
