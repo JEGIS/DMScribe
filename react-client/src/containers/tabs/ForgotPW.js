@@ -33,7 +33,7 @@ class ForgotPW extends Component {
       username: user[0].value
     }
     $('#loginUsername').val('');
-    $.get('/forgot', userObj)
+    $.get('/forgotPassword', userObj)
     .then((data) => {
       console.log('data ', data);
     })
