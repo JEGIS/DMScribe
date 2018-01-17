@@ -107,11 +107,6 @@ class DropdownExampleSearchSelection extends Component {
             </div>
           </Grid.Column>
         </Grid.Row>
-        <Grid.Row centered columns={7}>
-          <Grid.Column>
-            <ClearMonsters />
-          </Grid.Column>
-        </Grid.Row>
       </Grid>
       )
   }

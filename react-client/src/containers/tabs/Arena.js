@@ -25,6 +25,10 @@ class Arena extends Component {
       <div>
         <DropdownExampleSearchSelection />
         <DiceRoller />
+        <div className="buttonsWrapper">
+          {/* <OrderButton /> */}
+          <ClearMonsters />
+        </div>
         <OrderList />
         <PlayersList />
         <MonstersList />
