@@ -44,7 +44,6 @@ class Login extends Component {
     .catch(() => {
       console.log('Wrong username and password');
     })
-
   }
 
   render() {
@@ -73,6 +72,12 @@ class Login extends Component {
                   onClick={() => {this.props.selectTab('Signup')}}
                   as='a' 
                   primary>Sign Up</Button>
+                </Menu.Item>
+                <Menu.Item>
+                  <Button 
+                  onClick={() => {this.props.selectTab('ForgotPW')}}
+                  as='a' 
+                  primary>Forgot password?</Button>
                 </Menu.Item>
               </Menu.Menu>
             </Container>
@@ -112,8 +117,3 @@ function mapDispatchToProps (dispatch) {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login);
-
-
-
-
-
