@@ -26,6 +26,9 @@ import {
 class AccountInfo extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      status: ''
+    }
     this.changePassword= this.changePassword.bind(this);
   }
 
@@ -35,6 +38,11 @@ class AccountInfo extends Component {
     var userObj = {
       username: user[0].value,
       password: user[1].value
+    }
+    if (userObj.username === '' || userObj.password === '') {
+      this.setState({
+        status:
+      })
     }
     $('#loginUsername').val('');
     $('#loginPassword').val('');
@@ -59,9 +67,15 @@ class AccountInfo extends Component {
     $.post('/changeEmail', userObj)
     .then(() => {
       console.log('Your email has been changed');
+      this.setState({
+        status: 'success'
+      })
     })
     .catch(() => {
       console.log('Wrong username and password');
+      this.setState({
+        status: 'error'
+      })
     })
   }
 
@@ -85,9 +99,15 @@ class AccountInfo extends Component {
             <div className="field"> Change Email:
               <input type="text" name="username" id='loginUsername' placeholder="enter username"/>
             </div>
-            <div className="field">
+            <div className={`ui form ${this.state.status}`}>
               <input placeholder="enter new email" name="email"/>
             </div>
+            
+            <div class="ui error message">
+              <div class="header">Action Forbidden</div>
+              <p>You can only sign up for an account once with a given e-mail address.</p>
+            </div>
+
             <span><button className="ui button" type="submit">Submit</button></span>
           </form>
         </Grid.Column>
