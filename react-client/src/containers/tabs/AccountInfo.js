@@ -38,7 +38,7 @@ class AccountInfo extends Component {
     }
     $('#loginUsername').val('');
     $('#loginPassword').val('');
-    $.post('/newPassword', userObj)
+    $.post('/changePassword', userObj)
     .then(() => {
       console.log('Your password has been changed');
     })
@@ -53,7 +53,7 @@ class AccountInfo extends Component {
     }
     return (
       <Grid centered columns={6}>
-        <Grid.Column>
+        <Grid.Column> Account Management
           <form className="ui form signupForm" onSubmit={(event) => {this.changePassword(event)}}>
             <div className="field"> Change Password:
               <input type="text" name="username" id='loginUsername' placeholder="enter username"/>

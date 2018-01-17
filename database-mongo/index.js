@@ -115,22 +115,9 @@ var resetPassword = (username, hash, callback) => {
   });
 }
 
-// var newPassword = (username, hash, callback) => {
-//   User.findOne({ username: username }, function (err, doc){
-//     if (err) {
-//       callback(err, null);
-//     } else {
-//       doc.password = hash;
-//       doc.save();
-//       callback(null, doc)
-//     }
-//   });  
-// }
-
 exports.signUpUser = signUpUser;
 exports.getUsers = getUsers;
 exports.savePlayer = savePlayer;
 exports.getGroups = getGroups;
 exports.specificGroup = specificGroup;
 exports.resetPassword = resetPassword;
-//exports.newPassword = newPassword;
