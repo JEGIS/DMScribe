@@ -29,7 +29,7 @@ const sendEmail = (email, password) => {
 	    if (error) {
 	      reject(error)
 	    } else {
-	      resolve('Email sentto: ' + email)
+	      resolve('Email sent to: ' + email)
 	    }
 	  });
 	})

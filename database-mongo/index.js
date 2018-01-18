@@ -51,7 +51,6 @@ var signUpUser = (user, callback) => {
 }
 
 var getUsers = function (name, callback) {
-  console.log('getUsers: ', name)
   User.find({username: name}, function (err, users) {
     if (err) {
       callback(err, null)
@@ -118,11 +117,9 @@ var getUserEmail = (username, callback) => {
 
 var resetPassword = (username, hash, callback) => {
   User.findOne({ username: username }, function (err, doc){
-    if (err) {
+    if (err || doc === null) {
       callback(err, null);
     } else {
-      //var random = 12345; // make random
-
       doc.password = hash;
       doc.save();
       callback(null, doc)
@@ -132,7 +129,7 @@ var resetPassword = (username, hash, callback) => {
 
 var changeEmail = (username, email, callback) => {
   User.findOne({ username: username }, function (err, doc){
-    if (err) {
+    if (err || doc === null) {
       callback(err, null);
     } else {
       doc.email = email;
