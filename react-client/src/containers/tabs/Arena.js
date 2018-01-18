@@ -22,9 +22,17 @@ class Arena extends Component {
     super(props);
     this.state = {
       monsters: [],
-      players: []
+      players: [],
+      monsterModal: false,
+      playerModal: false
     };
-    this.onMonsterFormSubmit = this.onMonsterFormSubmit.bind(this)
+    this.onMonsterFormSubmit = this.onMonsterFormSubmit.bind(this);
+    this.onPlayerFormSubmit = this.onPlayerFormSubmit.bind(this);
+    this.onPlayerSave = this.onPlayerSave.bind(this);
+    this.openMonster = this.openMonster.bind(this);
+    this.closeMonster = this.closeMonster.bind(this);
+    this.openPlayer = this.openPlayer.bind(this);
+    this.closePlayer = this.closePlayer.bind(this);
   }
 
   onMonsterFormSubmit (event) {
@@ -35,6 +43,7 @@ class Arena extends Component {
       resultsObj[monsterArr[i].name] = monsterArr[i].value;
     }
     addCustomMonster(resultsObj);
+    this.setState({monsterModal: false});
   }
 
   onPlayerFormSubmit (event) {
@@ -45,6 +54,7 @@ class Arena extends Component {
       resultsObj[playerArr[i].name] = playerArr[i].value;
     }
     addPlayer(resultsObj);
+    this.setState({playerModal: false});
   }
 
   onPlayerSave (event) {
@@ -62,6 +72,23 @@ class Arena extends Component {
       resultsObj.image = res;
       $.post('/savePlayer', resultsObj)
     })
+    this.setState({playerModal: false});
+  }
+
+  openMonster () {
+    this.setState({monsterModal: true});
+  }
+
+  closeMonster () {
+    this.setState({monsterModal: false});
+  }
+
+  openPlayer () {
+    this.setState({playerModal: true});
+  }
+
+  closePlayer () {
+    this.setState({playerModal: false});
   }
 
   render () {
@@ -77,7 +104,11 @@ class Arena extends Component {
         <div className="buttonsWrapper">
           {/* <OrderButton /> */}
           <ClearMonsters />
-          <Modal trigger={<Button>Create a Monster</Button>}>
+          <Modal 
+            trigger={<Button onClick={this.openMonster}>Create a Monster</Button>}
+            open={this.state.monsterModal}
+            onClose={this.closeMonster}
+          >
             <Modal.Header>
               Create a Monster
             </Modal.Header>
@@ -127,7 +158,11 @@ class Arena extends Component {
               </form>
             </Modal.Content>
           </Modal>
-          <Modal trigger={<Button>Create a Player</Button>}>
+          <Modal 
+            trigger={<Button onClick={this.openPlayer}>Create a Player</Button>}
+            open={this.state.playerModal}
+            onClose={this.closePlayer}
+          >
             <Modal.Header>
               Create a Player
             </Modal.Header>
