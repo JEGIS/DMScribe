@@ -47,6 +47,7 @@ class LandingPage extends Component {
                 style={{ backgroundColor: 'transparent', fontSize: '1.7em', color:'white', fontWeight: 'normal' }}
               />
               <Button 
+              className="theme-text"
               onClick={() => {this.props.selectTab('Arena')}}
               primary size='huge'>
                 Roll for Initiative!
@@ -60,17 +61,20 @@ class LandingPage extends Component {
               <Menu.Menu position='right'>
                 <Menu.Item className='item'>
                   <Button
+                  className="theme-text"
                   onClick={() => {this.props.selectTab('Login')}}
                   as='a'>Log in!</Button>
                 </Menu.Item>
                 <Menu.Item>
                   <Button 
+                  className="theme-text"
                   onClick={() => {this.props.selectTab('Signup')}}
                   as='a' 
                   primary>Sign Up!</Button>
                 </Menu.Item>
                 <Menu.Item>
                   <Button 
+                    className="theme-text"
                     onClick={() => {this.props.selectTab('ForgotPW')}}
                     as='a' 
                     primary>Forgot password?

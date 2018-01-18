@@ -59,22 +59,26 @@ class Login extends Component {
               <Menu.Menu position='right'>
                 <Menu.Item className='item'>
                   <Button
+                  className="theme-text"
                   onClick={() => {this.props.selectTab('Landing')}}
                   as='a'>Back to landing page</Button>
                 </Menu.Item>
                 <Menu.Item className='item'>
                   <Button
+                  className="theme-text"
                   onClick={() => {this.props.selectTab('Login')}}
                   as='a'>Log in</Button>
                 </Menu.Item>
                 <Menu.Item>
                   <Button 
+                  className="theme-text"
                   onClick={() => {this.props.selectTab('Signup')}}
                   as='a' 
                   primary>Sign Up</Button>
                 </Menu.Item>
                 <Menu.Item>
                   <Button 
+                  className="theme-text"
                   onClick={() => {this.props.selectTab('ForgotPW')}}
                   as='a' 
                   primary>Forgot password?</Button>

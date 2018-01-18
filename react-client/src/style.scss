@@ -298,20 +298,13 @@ label {
   margin: 20px auto;
 }
 
-.test {
-  //background-image: url('http://www.patriotgamesleeds.com/images/D&DLOGO.png') !important;
-  background-repeat: no-repeat !important;
-  background-color: linear-gradient(red, yellow) !important;
-}
-
 div.logo {
   // content: url('https://png.icons8.com/ultraviolet/540/icosahedron.png') !important;
   // height: 5% !important;
   // width: 5% !important;
   margin: auto auto !important;
-  //background-image: radial-gradient(#ffcc66, #663300) !important;
-  font-family: fantasy !important;
-  font-size: 20px !important;
+  //font-family: 'Inknut Antiqua', serif !important;
+  font-size: 1.5em !important;
   background-color: radial-gradient(#ffcc66, #663300) !important;
 }
 
@@ -319,7 +312,10 @@ div.logo {
   background-image: radial-gradient(#ffcc66, #663300) !important;//radial-gradient(#ffcc66, #663300) !important;  
 }
 
-
+.theme-text {
+  font-family: 'Inknut Antiqua', serif !important;
+  font-size: 1em !important;
+}
 
 
 

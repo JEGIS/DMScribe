@@ -105,7 +105,7 @@ class Arena extends Component {
         <div className="buttonsWrapper">
           {/* <OrderButton /> */}
           <Modal 
-            trigger={<Button onClick={this.openMonster}>Create a Monster</Button>}
+            trigger={<Button className="theme-text" onClick={this.openMonster}>Create a Monster</Button>}
             open={this.state.monsterModal}
             onClose={this.closeMonster}
           >
@@ -159,7 +159,7 @@ class Arena extends Component {
             </Modal.Content>
           </Modal>
           <Modal 
-            trigger={<Button onClick={this.openPlayer}>Create a Player</Button>}
+            trigger={<Button className="theme-text" onClick={this.openPlayer}>Create a Player</Button>}
             open={this.state.playerModal}
             onClose={this.closePlayer}
           >

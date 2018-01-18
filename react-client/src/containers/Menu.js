@@ -28,41 +28,31 @@ class Menu extends Component {
           ?
             <div className="ui menu background-theme">
               <a
-                className='item'
+                className='item theme-text'
                 onClick={() => {this.props.selectTab('AccountInfo')}}
                 >{this.props.user}
                 <i className="setting icon"></i>
               </a>
-              <div className="logo"> DM-Scribe</div>
+              <div className="logo theme-text"> DM-Scribe</div>
               <a
                 onClick={() => {
                   this.props.setUser('');
                   this.props.logoutReset();
                   this.props.selectTab('Landing');
                 }}
-                className="item"
+                className="item theme-text"
               >Log out!</a>
             </div>  
           :
-            <div className="ui menu">
-              {tabs.map((tab) => {
-                return (
-                  <a
-                    key={tab} 
-                    onClick={() => {this.props.selectTab(tab)}}
-                    className="item tab" 
-                    value={tab}
-                  >{tab}</a>
-                );
-              })}
-              <a 
+            <div className="ui menu background-theme">
+              <a
+                className="item theme-text" 
                 onClick={() => {this.props.selectTab('Login')}}
-                className="item tabLog" 
               >Login</a>
+              <div className="logo theme-text"> DM-Scribe</div>
               <a
                 onClick={() => {this.props.selectTab('Signup')}}
-                className="item tabSignUp"
-
+                className="item theme-text"
               >Sign up</a>
             </div>  
         }
