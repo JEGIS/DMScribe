@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
+import $ from 'jquery';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Modal, Button } from 'semantic-ui-react'
 import PlayersList from '../PlayersList';
 import MonstersList from '../MonstersList';
 import OrderList from '../orderList';
+import { addCustomMonster, clearSelectedMonster, addPlayer, fetchClassImg } from '../../actions/index';
 import DiceRoller from '../DiceRoller';
 import OrderButton from '../buttons/OrderButton';
 import ClearMonsters from '../buttons/ClearMonsters';
@@ -16,6 +18,52 @@ const Wrapper = styles.div`
 `;
 
 class Arena extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      monsters: [],
+      players: []
+    };
+    this.onMonsterFormSubmit = this.onMonsterFormSubmit.bind(this)
+  }
+
+  onMonsterFormSubmit (event) {
+    event.preventDefault();
+    var monsterArr = $(event.target).serializeArray();
+    var resultsObj = {};
+    for (var i = 0; i < monsterArr.length; i++) {
+      resultsObj[monsterArr[i].name] = monsterArr[i].value;
+    }
+    addCustomMonster(resultsObj);
+  }
+
+  onPlayerFormSubmit (event) {
+    event.preventDefault();
+    var playerArr = $(event.target).serializeArray();
+    var resultsObj = {};
+    for (var i = 0; i < playerArr.length; i++) {
+      resultsObj[playerArr[i].name] = playerArr[i].value;
+    }
+    addPlayer(resultsObj);
+  }
+
+  onPlayerSave (event) {
+    event.preventDefault();
+    var playerArr = $(event.target).serializeArray();
+    var resultsObj = {};
+    for (var i = 0; i < playerArr.length; i++) {
+      resultsObj[playerArr[i].name] = playerArr[i].value;
+    }
+    resultsObj.dm = this.props.user;
+    console.log(resultsObj);
+    addPlayer(resultsObj);
+    fetchClassImg(resultsObj.class)
+    .then((res) => {
+      resultsObj.image = res;
+      $.post('/savePlayer', resultsObj)
+    })
+  }
+
   render () {
     if (this.props.currentTab !== 'Arena') {
       return null;
@@ -161,14 +209,17 @@ class Arena extends Component {
 
 function mapStateToProps (state) {
   return {
+    players: state.players,
     monsters: state.monsters,
     players: state.players,
-    currentTab: state.currentTab
+    currentTab: state.currentTab,
+    selectedMonster: state.selectedMonster,
+    user: state.user
   }
 }
 
 function mapDispatchToProps (dispatch) {
-  return bindActionCreators({}, dispatch);
+  return bindActionCreators({clearSelectedMonster}, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Arena);
