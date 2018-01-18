@@ -2,13 +2,14 @@ import React, { Component } from 'react';
 import $ from 'jquery';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { Modal, Button } from 'semantic-ui-react'
+import { Modal, Button, Icon } from 'semantic-ui-react'
 import PlayersList from '../PlayersList';
 import MonstersList from '../MonstersList';
 import OrderList from '../orderList';
 import { addCustomMonster, clearSelectedMonster, addPlayer, fetchClassImg } from '../../actions/index';
 import DiceRoller from '../DiceRoller';
 import OrderButton from '../buttons/OrderButton';
+import ClearPlayers from '../buttons/ClearPlayers';
 import ClearMonsters from '../buttons/ClearMonsters';
 import DropdownExampleSearchSelection from '../SearchBar';
 import styles from 'styled-components';
@@ -103,7 +104,6 @@ class Arena extends Component {
         <DiceRoller />
         <div className="buttonsWrapper">
           {/* <OrderButton /> */}
-          <ClearMonsters />
           <Modal 
             trigger={<Button onClick={this.openMonster}>Create a Monster</Button>}
             open={this.state.monsterModal}
@@ -235,6 +235,7 @@ class Arena extends Component {
         <div className="buttonsWrapper">
           {/* <OrderButton /> */}
           <ClearMonsters />
+          <ClearPlayers />
         </div>
       </div>
       </Wrapper>
