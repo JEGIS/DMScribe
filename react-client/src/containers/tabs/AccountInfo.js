@@ -39,7 +39,8 @@ class AccountInfo extends Component {
     var user = $(event.target).serializeArray();
     var userObj = {
       username: user[0].value,
-      password: user[1].value
+      email: user[1].value,
+      password: user[2].value
     }
     if (userObj.username === '') {
       this.setState({
@@ -50,8 +51,6 @@ class AccountInfo extends Component {
         password: 'error'
       })      
     } else {
-      $('#loginUsername').val('');
-      $('#loginPassword').val('');
       $.post('/changePassword', userObj)
       .then((res) => {
         this.setState({
@@ -69,6 +68,7 @@ class AccountInfo extends Component {
   }
 
   changeEmail (event) {
+    console.log('changeEmail ran')
     event.preventDefault();
     var user = $(event.target).serializeArray();
     var userObj = {
@@ -84,8 +84,6 @@ class AccountInfo extends Component {
         email: 'error'
       })
     } else {
-      $('#loginUsername').val('');
-      $('#loginEmail').val('');
       $.post('/changeEmail', userObj)
       .then((res) => {
         this.setState({
@@ -103,30 +101,37 @@ class AccountInfo extends Component {
   }
 
   render () {
+    console.log(this.state.username)
     if (this.props.currentTab !== 'AccountInfo') {
       return null;
     }
     return (
-      <Grid centered columns={6}>
-        <Grid.Column> Account Management
+      <Grid centered columns={3}>
+        <Grid.Column className="test">
+
           <form className="ui form signupForm" onSubmit={(event) => {this.changePassword(event)}}>
             <div className={`field ${this.state.username}`}> Change Password:
-              <input type="text" name="username" id='loginUsername' placeholder="enter username"/>
+              <input placeholder="confirm username" name="username"/>
             </div>
-            <div className={`ui form ${this.state.password}`}>
-              <input placeholder="enter new password" name="password"/>
+            <div className={`field ${this.state.email}`}>
+              <input placeholder="confirm email" name="email"/>
             </div>
-            <span><button className="ui button" type="submit">Submit</button></span>
+            <div className={`field ${this.state.password}`}>
+              <input placeholder="new password" name="password"/>
+            </div>
+            <span><Button className="ui button" type="submit">Submit</Button></span>
           </form>
+
           <form className="ui form signupForm" onSubmit={(event) => {this.changeEmail(event)}}>
             <div className={`field ${this.state.username}`}> Change Email:
-              <input type="text" name="username" id='loginUsername' placeholder="enter username"/>
+              <input placeholder="enter username" name="username"/>
             </div>
             <div className={`field ${this.state.email}`}>
               <input placeholder="enter new email" name="email"/>
             </div>
-            <span><button className="ui button" type="submit">Submit</button></span>
+            <span><Button className="ui button" type="submit">Submit</Button></span>
           </form>
+
         </Grid.Column>
       </Grid>
     );

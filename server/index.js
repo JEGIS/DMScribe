@@ -148,9 +148,10 @@ app.get('/specificGroup', (req, res) => {
 app.post('/changePassword', (req, res) => {
   username = req.body.username;
   password = req.body.password;
+  email = req.body.email;
 
   bcrypt.hash(password, saltRounds).then((hash) => {
-    db.resetPassword(username, hash, (err, success) => {
+    db.resetPassword(username, hash, email, (err, success) => {
       if (err || success === null) {
         res.send('error')
       } else {
@@ -166,7 +167,6 @@ app.post('/changeEmail', (req, res) => {
   email = req.body.email;  
 
   db.changeEmail(username, email, (err, success) => {
-    console.log('err: ', err, 'success: ', success);
     if (err || success === null) {
       res.send('error')
     } else {
@@ -178,17 +178,22 @@ app.post('/changeEmail', (req, res) => {
 // email a new password
 app.get('/forgotPassword', (req, res) => {
   username = req.query.username;
+  email = req.query.email
   password = helpers.makeid();
 
   bcrypt.hash(password, saltRounds).then((hash) => {
-    db.resetPassword(username, hash, (err, user) => {
-      helpers.sendEmail(user.email, password, res)
-      .then((success) => {
-        res.send(success);
-      })
-      .catch((err) => {
-        res.send(err);
-      });
+    db.resetPassword(username, hash, email, (err, user) => {
+      if (user !== null) {
+        helpers.sendEmail(user.email, password, res)
+        .then((success) => {
+          res.send(success);
+        })
+        .catch((err) => {
+          res.send(err);
+        });
+      } else {
+        res.send('error')
+      }
     })
   })
 })

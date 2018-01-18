@@ -28,11 +28,10 @@ class ForgotPW extends Component {
   forgot (event) {
     event.preventDefault();
     var user = $(event.target).serializeArray();
-    // console.log('user: ', user);
     var userObj = {
-      username: user[0].value
+      username: user[0].value,
+      email: user[1].value
     }
-    $('#loginUsername').val('');
     $.get('/forgotPassword', userObj)
     .then((data) => {
       console.log('data ', data);
@@ -82,7 +81,11 @@ class ForgotPW extends Component {
               <form className="ui form signupForm" onSubmit={(event) => {this.forgot(event)}}>
                 <div className="field">
                   <label>Username:</label>
-                  <input type="text" name="username" id='loginUsername'/>
+                  <input type="text" name="username" placeholder="enter username"/>
+                </div>
+                <div className="field">
+                  <label>Email:</label>
+                  <input type="text" name="email" placeholder="enter email"/>
                 </div>
                 <span><button className="ui button" type="submit">Get new password</button></span>
               </form>
