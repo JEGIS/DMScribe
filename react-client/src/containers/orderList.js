@@ -1,9 +1,15 @@
 import React, { Component } from 'react';
 import { Card, Icon, Image } from 'semantic-ui-react'
 import { connect } from 'react-redux';
-
+import { Button } from 'semantic-ui-react';
 
 class OrderList extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+        selected: null
+    };
+  }
  
   render () {
     if (this.props.turnOrder.length === 0) {
@@ -15,7 +21,7 @@ class OrderList extends Component {
         <Card.Group>
           {this.props.turnOrder.map((card, index) => {
                   return (
-                      <Card key={index} className='turnCards'>
+                      <Card key={index} className='turnCards' onClick>
                         <Card.Content>
                           <Card.Header>
                             {card.name} 
@@ -31,6 +37,8 @@ class OrderList extends Component {
                       </Card>
                     )
                 })}
+        <Button content="move left" />
+        <Button content="move right" />
         </Card.Group>
       </div>
     );
