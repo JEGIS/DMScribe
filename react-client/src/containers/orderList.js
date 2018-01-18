@@ -9,6 +9,12 @@ class OrderList extends Component {
     this.state = {
         selected: null
     };
+
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  handleClick() {
+
   }
  
   render () {
@@ -21,7 +27,7 @@ class OrderList extends Component {
         <Card.Group>
           {this.props.turnOrder.map((card, index) => {
                   return (
-                      <Card key={index} className='turnCards' onClick>
+                      <Card key={index} className='turnCards' onClick={this.handleClick}>
                         <Card.Content>
                           <Card.Header>
                             {card.name} 
@@ -37,8 +43,8 @@ class OrderList extends Component {
                       </Card>
                     )
                 })}
-        <Button content="move left" />
-        <Button content="move right" />
+        <Button content="Move Player Left" />
+        <Button content="Move Player Right" />
         </Card.Group>
       </div>
     );
