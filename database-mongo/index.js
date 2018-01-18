@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-// mongoose.connect('mongodb://localhost/groups');
+mongoose.connect('mongodb://localhost/groups');
 // var uri = `mongodb://${cred.dbUsername}:${cred.dbPassword}@ds255787.mlab.com:55787/heroku_jhf97sfb`;
 // var cred = require('./dbCredentials');
 
@@ -51,7 +51,6 @@ var signUpUser = (user, callback) => {
 }
 
 var getUsers = function (name, callback) {
-  console.log('getUsers: ', name)
   User.find({username: name}, function (err, users) {
     if (err) {
       callback(err, null)
@@ -116,14 +115,29 @@ var getUserEmail = (username, callback) => {
 }
 
 
-var resetPassword = (username, hash, callback) => {
+var resetPassword = (username, hash, email, callback) => {
   User.findOne({ username: username }, function (err, doc){
-    if (err) {
+    if (err || doc === null) {
       callback(err, null);
     } else {
-      //var random = 12345; // make random
+      // prevent resetting email if attempted email is incorrect
+      if (doc.email !== email) {
+        callback(err, null);
+      } else {
+        doc.password = hash;
+        doc.save();
+        callback(null, doc)
+      }
+    }
+  });
+}
 
-      doc.password = hash;
+var changeEmail = (username, email, callback) => {
+  User.findOne({ username: username }, function (err, doc){
+    if (err || doc === null) {
+      callback(err, null);
+    } else {
+      doc.email = email;
       doc.save();
       callback(null, doc)
     }
@@ -137,3 +151,4 @@ exports.getGroups = getGroups;
 exports.specificGroup = specificGroup;
 exports.getUserEmail = getUserEmail;
 exports.resetPassword = resetPassword;
+exports.changeEmail = changeEmail;

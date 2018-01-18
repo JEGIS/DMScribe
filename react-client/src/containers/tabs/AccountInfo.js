@@ -26,6 +26,11 @@ import {
 class AccountInfo extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      username: '',
+      email: '',
+      password: ''
+    }
     this.changePassword= this.changePassword.bind(this);
   }
 
@@ -34,35 +39,99 @@ class AccountInfo extends Component {
     var user = $(event.target).serializeArray();
     var userObj = {
       username: user[0].value,
-      password: user[1].value
+      email: user[1].value,
+      password: user[2].value
     }
-    $('#loginUsername').val('');
-    $('#loginPassword').val('');
-    $.post('/changePassword', userObj)
-    .then(() => {
-      console.log('Your password has been changed');
-    })
-    .catch(() => {
-      console.log('Wrong username and password');
-    })
+    if (userObj.username === '') {
+      this.setState({
+        username: 'error'
+      })
+    } else if (userObj.password === '') {
+      this.setState({
+        password: 'error'
+      })      
+    } else {
+      $.post('/changePassword', userObj)
+      .then((res) => {
+        this.setState({
+          username: res,
+          password: res
+        })
+      })
+      .catch(() => {
+        console.log('Wrong username');
+        this.setState({
+          username: 'error'
+        })
+      })
+    }
+  }
+
+  changeEmail (event) {
+    console.log('changeEmail ran')
+    event.preventDefault();
+    var user = $(event.target).serializeArray();
+    var userObj = {
+      username: user[0].value,
+      email: user[1].value
+    }
+    if (userObj.username === '') {
+      this.setState({
+        username: 'error'
+      })
+    } else if (userObj.email === '') {
+      this.setState({
+        email: 'error'
+      })
+    } else {
+      $.post('/changeEmail', userObj)
+      .then((res) => {
+        this.setState({
+          username: res,
+          email: res
+        })
+      })
+      .catch(() => {
+        console.log('Wrong username');
+        this.setState({
+          username: 'error'
+        })
+      })
+    }
   }
 
   render () {
+    console.log(this.state.username)
     if (this.props.currentTab !== 'AccountInfo') {
       return null;
     }
     return (
-      <Grid centered columns={6}>
-        <Grid.Column> Account Management
+      <Grid centered columns={3}>
+        <Grid.Column className="test">
+
           <form className="ui form signupForm" onSubmit={(event) => {this.changePassword(event)}}>
-            <div className="field"> Change Password:
-              <input type="text" name="username" id='loginUsername' placeholder="enter username"/>
+            <div className={`field ${this.state.username}`}> Change Password:
+              <input placeholder="confirm username" name="username"/>
             </div>
-            <div className="field">
-              <input placeholder="enter new password" name="password"/>
+            <div className={`field ${this.state.email}`}>
+              <input placeholder="confirm email" name="email"/>
             </div>
-            <span><button className="ui button" type="submit">Submit</button></span>
+            <div className={`field ${this.state.password}`}>
+              <input placeholder="new password" name="password"/>
+            </div>
+            <span><Button className="ui button" type="submit">Submit</Button></span>
           </form>
+
+          <form className="ui form signupForm" onSubmit={(event) => {this.changeEmail(event)}}>
+            <div className={`field ${this.state.username}`}> Change Email:
+              <input placeholder="enter username" name="username"/>
+            </div>
+            <div className={`field ${this.state.email}`}>
+              <input placeholder="enter new email" name="email"/>
+            </div>
+            <span><Button className="ui button" type="submit">Submit</Button></span>
+          </form>
+
         </Grid.Column>
       </Grid>
     );

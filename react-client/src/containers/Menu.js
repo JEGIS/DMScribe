@@ -21,6 +21,54 @@ class Menu extends Component {
     }
 
   	return(
+      <div>
+      <Wrapper>
+      <div className="background-theme">
+        {this.props.user 
+          ?
+            <div className="ui menu background-theme">
+              <a
+                className='item'
+                onClick={() => {this.props.selectTab('AccountInfo')}}
+                >{this.props.user}
+                <i className="setting icon"></i>
+              </a>
+              <div className="logo"> DM-Scribe</div>
+              <a
+                onClick={() => {
+                  this.props.setUser('');
+                  this.props.logoutReset();
+                  this.props.selectTab('Landing');
+                }}
+                className="item"
+              >Log out!</a>
+            </div>  
+          :
+            <div className="ui menu">
+              {tabs.map((tab) => {
+                return (
+                  <a
+                    key={tab} 
+                    onClick={() => {this.props.selectTab(tab)}}
+                    className="item tab" 
+                    value={tab}
+                  >{tab}</a>
+                );
+              })}
+              <a 
+                onClick={() => {this.props.selectTab('Login')}}
+                className="item tabLog" 
+              >Login</a>
+              <a
+                onClick={() => {this.props.selectTab('Signup')}}
+                className="item tabSignUp"
+
+              >Sign up</a>
+            </div>  
+        }
+      </div>
+      </Wrapper>
+
       <Wrapper>
       <div className='menuBar'>
         {this.props.user 
@@ -76,6 +124,7 @@ class Menu extends Component {
         }
       </div>
       </Wrapper>
+      </div>
 		);
   }
 }

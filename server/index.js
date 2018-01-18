@@ -93,8 +93,6 @@ app.post('/signUp', (req, res) => {
 })
 
 app.post('/login', (req, res) => {
-  console.log('username: ', req.body.username)
-  console.log('password: ', req.body.password)
   db.getUsers(req.body.username, (err, user) => {
     if (err) {
     } else {
@@ -114,47 +112,6 @@ app.post('/login', (req, res) => {
     }
   })
 })
-
-// ** Password Recovery ** //
-
-app.get('/forgot', (req, res) => {
-  username = req.query.username;
-  password = helpers.makeid();
-
-  bcrypt.hash(password, saltRounds).then((hash) => {
-
-    db.resetPassword(username, hash, (err, user) => {
-      var email = user.email;
-
-      var transporter = nodemailer.createTransport({
-        service: 'gmail',
-        auth: {
-          user: 'dungeonbuddiesdmscribe@gmail.com',
-          pass: 'hackreactoratx31'
-        }
-      });
-
-      var mailOptions = {
-        from: 'dungeonbuddiesdmscribe@gmail.com',
-        to: email,
-        subject: 'Sending Email using Node.js',
-        text: 'your new password is ' + password
-      };
-
-      transporter.sendMail(mailOptions, function(error, info){
-        if (error) {
-          console.log(error);
-          res.send(error)
-        } else {
-          console.log('Email sent: ' + info.response);
-          res.send('Email sentto: ' + email);
-        }
-      });
-    })
-  })
-})
-
-// ** ** ** //
 
 app.post('/savePlayer', (req, res) => {
   db.savePlayer(req.body, (err, success) => {
@@ -187,50 +144,59 @@ app.get('/specificGroup', (req, res) => {
   })
 })
 
-// ** Password Management ** //
-
 // update an existing password
 app.post('/changePassword', (req, res) => {
   username = req.body.username;
   password = req.body.password;
+  email = req.body.email;
 
   bcrypt.hash(password, saltRounds).then((hash) => {
-    db.resetPassword(username, hash, (err, success) => {
-      if (err) {
-        res.send(500)
+    db.resetPassword(username, hash, email, (err, success) => {
+      if (err || success === null) {
+        res.send('error')
       } else {
-        res.send(201)
+        res.send('success')
       }
     })
+  })
+})
+
+// update an existing email address
+app.post('/changeEmail', (req, res) => {
+  username = req.body.username;
+  email = req.body.email;  
+
+  db.changeEmail(username, email, (err, success) => {
+    if (err || success === null) {
+      res.send('error')
+    } else {
+      res.send('success')
+    }
   })
 })
 
 // email a new password
 app.get('/forgotPassword', (req, res) => {
   username = req.query.username;
+  email = req.query.email
   password = helpers.makeid();
 
   bcrypt.hash(password, saltRounds).then((hash) => {
-    db.resetPassword(username, hash, (err, user) => {
-      helpers.sendEmail(user.email, password, res)
-      .then((success) => {
-        res.send(success);
-      })
-      .catch((err) => {
-        res.send(err);
-      });
+    db.resetPassword(username, hash, email, (err, user) => {
+      if (user !== null) {
+        helpers.sendEmail(user.email, password, res)
+        .then((success) => {
+          res.send(success);
+        })
+        .catch((err) => {
+          res.send(err);
+        });
+      } else {
+        res.send('error')
+      }
     })
   })
 })
-
-// ******** //
-
-
-
-
-
-
-
 
 
 
