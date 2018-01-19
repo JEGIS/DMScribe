@@ -40,7 +40,7 @@ class PlayersList extends Component {
                    <Image className='classImg' src={player.image}/>
                 </div>
 						    <Card.Content>
-						      <Card.Header>
+						      <Card.Header className='theme-text'>
 						        {player.name}
 						      </Card.Header>
                   {/*this function removes the specified player from the redux

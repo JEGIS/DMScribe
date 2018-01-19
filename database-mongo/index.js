@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/groups');
+// mongoose.connect('mongodb://localhost/groups');
 // var uri = `mongodb://${cred.dbUsername}:${cred.dbPassword}@ds255787.mlab.com:55787/heroku_jhf97sfb`;
 // var cred = require('./dbCredentials');
 
@@ -117,17 +117,16 @@ var getUserEmail = (username, callback) => {
 
 var resetPassword = (username, hash, email, callback) => {
   User.findOne({ username: username }, function (err, doc){
-    if (err || doc === null) {
-      callback(err, null);
+    if (err) {
+      callback(err, null); // could not query
+    } else if (doc === null) {
+      callback(null, 400) // username not found
+    } else if (doc.email !== email) {
+      callback(null, 401) // email not found
     } else {
-      // prevent resetting email if attempted email is incorrect
-      if (doc.email !== email) {
-        callback(err, null);
-      } else {
-        doc.password = hash;
-        doc.save();
-        callback(null, doc)
-      }
+      doc.password = hash;
+      doc.save();
+      callback(null, doc) // success
     }
   });
 }

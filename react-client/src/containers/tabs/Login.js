@@ -32,18 +32,29 @@ class Login extends Component {
       username: user[0].value,
       password: user[1].value
     }
-    $('#loginUsername').val('');
-    $('#loginPassword').val('');
-    $.post('/login', userObj)
-    .then(() => {
-      console.log(userObj.username);
-      this.props.setUser(userObj.username);
-      this.props.selectTab('Arena');
-      this.props.fetchGroups(userObj.username);
-    })
-    .catch(() => {
-      console.log('Wrong username and password');
-    })
+    if (userObj.username === '') {
+      alert('Enter your username');
+    } else if (userObj.password === '') {
+      alert('Enter your password');
+    } else {
+      $.post('/login', userObj)
+      .then((res) => {
+        this.props.setUser(userObj.username);
+        this.props.selectTab('Arena');
+        this.props.fetchGroups(userObj.username);
+      })
+      .catch((res) => { // BUG: catch runs on every call
+        if (res.status === 401) {
+          alert('Could not find username')
+        } else if (res.status === 402) {
+          alert('Could not find password')
+        } else if (res.status === 500) {
+          alert('Server error')
+        }
+        $('#username').val('');
+        $('#loginPassword').val('');
+      })      
+    }
   }
 
   render() {
@@ -54,27 +65,33 @@ class Login extends Component {
 
     return (
         <div>
-          <Menu fixed='top' size='large'>
+          <Menu fixed='top' size='large' className='theme-background'>
             <Container>
               <Menu.Menu position='right'>
                 <Menu.Item className='item'>
                   <Button
+                  className="theme-text"
                   onClick={() => {this.props.selectTab('Landing')}}
-                  as='a'>Back to landing page</Button>
+                  as='a'
+                  primary>Back to landing page</Button>
                 </Menu.Item>
                 <Menu.Item className='item'>
                   <Button
+                  className="theme-text"
                   onClick={() => {this.props.selectTab('Login')}}
-                  as='a'>Log in</Button>
+                  as='a'
+                  primary>Log in</Button>
                 </Menu.Item>
                 <Menu.Item>
                   <Button 
+                  className="theme-text"
                   onClick={() => {this.props.selectTab('Signup')}}
                   as='a' 
                   primary>Sign Up</Button>
                 </Menu.Item>
                 <Menu.Item>
                   <Button 
+                  className="theme-text"
                   onClick={() => {this.props.selectTab('ForgotPW')}}
                   as='a' 
                   primary>Forgot password?</Button>
@@ -82,18 +99,18 @@ class Login extends Component {
               </Menu.Menu>
             </Container>
           </Menu>
-          <Grid centered columns={6}>
-            <Grid.Column>
+          <Grid centered columns={5}>
+            <Grid.Column className="theme-text">
               <form className="ui form signupForm" onSubmit={(event) => {this.login(event)}}>
                 <div className="field">
                   <label>Username:</label>
-                  <input type="text" name="username" id='loginUsername'/>
+                  <input name="username" id='username' placeholder="enter username"/>
                 </div>
                 <div className="field">
                   <label>Password:</label>
-                  <input type="password" name="password" id='loginPassword'/>
+                  <input type="text" name="password" id='loginPassword' placeholder="enter password"/>
                 </div>
-                <span><button className="ui button" type="submit">Login!</button></span>
+                <Button className="ui button theme-text" type="submit">Login!</Button>
               </form>
             </Grid.Column>
           </Grid>

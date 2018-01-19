@@ -31,20 +31,27 @@ class Signup extends Component {
     var userObj = {
       username: user[0].value,
       password: user[1].value,
-      email: user[2].value // added 
+      email: user[2].value
     }
-    $('#signUpUsername').val('');
-    $('#signUpPassword').val('');
-    $('#signUpEmail').val(''); // added
-    if (userObj.username === '' || userObj.password === '' || userObj.email === '') {
-      alert('signup failed'); // added
-      return;
+    if (userObj.username === '') {
+      alert('Enter username')
+    } else if (userObj.password === '') {
+      alert('Enter password')
+    } else if (userObj.email === '') {
+      alert('Enter email')
     } else {
       $.post('/signUp', userObj)
-      .then(() => {
-        console.log(userObj.username);
+      .then((res) => {
         this.props.setUser(userObj.username);
         this.props.selectTab('Arena');
+      })
+      .catch((res) => {
+        if (res.status === 500) {
+          alert('Username already taken');
+        }
+        $('#signUpUsername').val('');
+        $('#signUpPassword').val('');
+        $('#signUpEmail').val('');
       })
     }
   }
@@ -57,27 +64,31 @@ class Signup extends Component {
 
     return (
         <div>
-          <Menu fixed='top' size='large'>
+          <Menu fixed='top' size='large' className='theme-background'>
             <Container>
               <Menu.Menu position='right'>
-                <Menu.Item className='item'>
+                <Menu.Item className='item theme-text'>
                   <Button
+                  className="theme-text"
                   onClick={() => {this.props.selectTab('Landing')}}
                   as='a'>Back to landing page</Button>
                 </Menu.Item>
                 <Menu.Item className='item'>
                   <Button 
+                  className="theme-text"
                   onClick={() => {this.props.selectTab('Login')}}
                   as='a'>Log in</Button>
                 </Menu.Item>
                 <Menu.Item>
                   <Button 
+                  className="theme-text"
                   onClick={() => {this.props.selectTab('Signup')}}
                   as='a' 
                   primary>Sign Up</Button>
                 </Menu.Item>
                 <Menu.Item>
                   <Button 
+                  className="theme-text"
                   onClick={() => {this.props.selectTab('ForgotPW')}}
                   as='a' 
                   primary>Forgot password?</Button>
@@ -85,8 +96,8 @@ class Signup extends Component {
               </Menu.Menu>
             </Container>
           </Menu>
-          <Grid centered columns={6}>
-            <Grid.Column>
+          <Grid centered columns={5}>
+            <Grid.Column className="theme-text">
               <form className="ui form signupForm" onSubmit={(event) => {this.signUp(event)}}>
                 <div className="field">
                   <label>Username:</label>
@@ -98,9 +109,9 @@ class Signup extends Component {
                 </div>
                 <div className="field">
                   <label>Email:</label>
-                  <input type="text" name="email" placeholder="example@gmail.com"/>
+                  <input type="text" name="email" placeholder="example@gmail.com" id='signUpEmail'/>
                 </div>
-                <span><button className="ui button" type="submit">Sign up!!</button></span>
+                <span><button className="ui button theme-text" type="submit">Sign up!!</button></span>
               </form>
             </Grid.Column>
           </Grid>

@@ -317,19 +317,22 @@ div.logo {
   // height: 5% !important;
   // width: 5% !important;
   margin: auto auto !important;
-  //background-image: radial-gradient(#ffcc66, #663300) !important;
-  font-family: fantasy !important;
-  font-size: 20px !important;
+  //font-family: 'Inknut Antiqua', serif !important;
+  font-size: 1.5em !important;
   background-color: radial-gradient(#ffcc66, #663300) !important;
 }
 
-.background-theme {
+.theme-background {
   background-image: radial-gradient(#ffcc66, #663300) !important;//radial-gradient(#ffcc66, #663300) !important;  
 }
 
 .dicePic {
   float: left;
   margin: 10px 10px;
+
+.theme-text {
+  font-family: 'Inknut Antiqua', serif !important;
+  font-size: 1em !important;
 
 }
 
