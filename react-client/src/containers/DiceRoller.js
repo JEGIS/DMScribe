@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Grid, Card, Button} from 'semantic-ui-react';
+import {Grid, Card, Button, Image} from 'semantic-ui-react';
 
 class DiceRoller extends Component {
 	constructor(props) {
@@ -54,7 +54,10 @@ class DiceRoller extends Component {
    				</Button>
    			</Button.Group>
    			<div className = 'roll'>
- 					{this.state.roll}
+   				<div>
+   					<img src='./images/d12.png' />
+   					<div className='numberRoll'>{this.state.roll}</div>
+   				</div>
    			</div>
       </div>
 		)
