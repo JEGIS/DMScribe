@@ -104,8 +104,8 @@ function mapStateToProps (state) {
 
 function mapDispatchToProps (dispatch) {
   return bindActionCreators({
-    selectTab: selectTab,
-    setUser: setUser
+    selectTab: selectTab
+    //setUser: setUser
   }, dispatch);
 }
 

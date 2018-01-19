@@ -9,29 +9,12 @@ import ClearMonsters from '../buttons/ClearMonsters';
 import DropdownExampleSearchSelection from '../SearchBar';
 import $ from 'jquery';
 import styles from 'styled-components';
-import {
-  Button,
-  Container,
-  Divider,
-  Grid,
-  Header,
-  Icon,
-  Image,
-  List,
-  Menu,
-  Segment,
-  Visibility,
-} from 'semantic-ui-react';
+import { Button, Grid, Form } from 'semantic-ui-react';
 
 class AccountInfo extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      username: '',
-      email: '',
-      password: ''
-    }
-    this.changePassword= this.changePassword.bind(this);
+    this.changePassword = this.changePassword.bind(this);
   }
 
   changePassword (event) {
@@ -42,33 +25,31 @@ class AccountInfo extends Component {
       email: user[1].value,
       password: user[2].value
     }
+    console.log(userObj.username, userObj.email, userObj.password )
     if (userObj.username === '') {
-      this.setState({
-        username: 'error'
-      })
+      alert('Enter your username');
+    } else if (userObj.email === '') {
+      alert('Enter your email');
     } else if (userObj.password === '') {
-      this.setState({
-        password: 'error'
-      })      
+      alert('Enter your password');
     } else {
       $.post('/changePassword', userObj)
       .then((res) => {
-        this.setState({
-          username: res,
-          password: res
-        })
+        alert(res)
+        $('#username1').val('');
+        $('#email1').val('');
+        $('#password1').val('');
       })
-      .catch(() => {
-        console.log('Wrong username');
-        this.setState({
-          username: 'error'
-        })
+      .catch((res) => {
+        alert('Could not reach server');
+        $('#username1').val('');
+        $('#email1').val('');
+        $('#password1').val('');
       })
     }
   }
 
   changeEmail (event) {
-    console.log('changeEmail ran')
     event.preventDefault();
     var user = $(event.target).serializeArray();
     var userObj = {
@@ -76,32 +57,25 @@ class AccountInfo extends Component {
       email: user[1].value
     }
     if (userObj.username === '') {
-      this.setState({
-        username: 'error'
-      })
+      alert('Enter your username');
     } else if (userObj.email === '') {
-      this.setState({
-        email: 'error'
-      })
+      alert('Enter your email');
     } else {
       $.post('/changeEmail', userObj)
       .then((res) => {
-        this.setState({
-          username: res,
-          email: res
-        })
+        alert(res);
+        $('#username2').val('');
+        $('#email2').val('');
       })
       .catch(() => {
-        console.log('Wrong username');
-        this.setState({
-          username: 'error'
-        })
+        alert('Could not reach server');
+        $('#username2').val('');
+        $('#email2').val('');
       })
     }
   }
 
   render () {
-    console.log(this.state.username)
     if (this.props.currentTab !== 'AccountInfo') {
       return null;
     }
@@ -109,28 +83,28 @@ class AccountInfo extends Component {
       <Grid centered columns={3}>
         <Grid.Column className="test">
 
-          <form className="ui form signupForm" onSubmit={(event) => {this.changePassword(event)}}>
-            <div className={`field ${this.state.username}`}> Change Password:
-              <input placeholder="confirm username" name="username"/>
+          <Form className="ui form signupForm" onSubmit={(event) => {this.changePassword(event)}}>
+            <div> Change Password:
+              <input placeholder="confirm username" name="username" id="username1"/>
             </div>
-            <div className={`field ${this.state.email}`}>
-              <input placeholder="confirm email" name="email"/>
+            <div>
+              <input placeholder="confirm email" name="email" id="email1"/>
             </div>
-            <div className={`field ${this.state.password}`}>
-              <input placeholder="new password" name="password"/>
+            <div>
+              <input placeholder="new password" name="password" id="password1"/>
             </div>
             <span><Button className="ui button" type="submit">Submit</Button></span>
-          </form>
+          </Form>
 
-          <form className="ui form signupForm" onSubmit={(event) => {this.changeEmail(event)}}>
-            <div className={`field ${this.state.username}`}> Change Email:
-              <input placeholder="enter username" name="username"/>
+          <Form className="ui form signupForm" onSubmit={(event) => {this.changeEmail(event)}}>
+            <div> Change Email:
+              <input placeholder="enter username" name="username" id="username2"/>
             </div>
-            <div className={`field ${this.state.email}`}>
-              <input placeholder="enter new email" name="email"/>
+            <div>
+              <input placeholder="enter new email" name="email" id="email2"/>
             </div>
-            <span><Button className="ui button" type="submit">Submit</Button></span>
-          </form>
+            <Button className="ui button" type="submit">Submit</Button>
+          </Form>
 
         </Grid.Column>
       </Grid>

@@ -32,18 +32,24 @@ class Login extends Component {
       username: user[0].value,
       password: user[1].value
     }
-    $('#loginUsername').val('');
-    $('#loginPassword').val('');
-    $.post('/login', userObj)
-    .then(() => {
-      console.log(userObj.username);
-      this.props.setUser(userObj.username);
-      this.props.selectTab('Arena');
-      this.props.fetchGroups(userObj.username);
-    })
-    .catch(() => {
-      console.log('Wrong username and password');
-    })
+    if (userObj.username === '') {
+      alert('Enter your username');
+    } else if (userObj.password === '') {
+      alert('Enter your password');
+    } else {
+      $.post('/login', userObj)
+      .then((res) => {
+        alert(res);
+        this.props.setUser(userObj.username);
+        this.props.selectTab('Arena');
+        this.props.fetchGroups(userObj.username);
+      })
+      .catch(() => {
+        alert(' login Could not reach server');
+        $('#username').val('');
+        $('#loginPassword').val('');
+      })      
+    }
   }
 
   render() {
@@ -67,7 +73,8 @@ class Login extends Component {
                   <Button
                   className="theme-text"
                   onClick={() => {this.props.selectTab('Login')}}
-                  as='a'>Log in</Button>
+                  as='a'
+                  primary>Log in</Button>
                 </Menu.Item>
                 <Menu.Item>
                   <Button 
@@ -86,18 +93,16 @@ class Login extends Component {
               </Menu.Menu>
             </Container>
           </Menu>
-          <Grid centered columns={6}>
+          <Grid centered columns={5}>
             <Grid.Column>
               <form className="ui form signupForm" onSubmit={(event) => {this.login(event)}}>
                 <div className="field">
-                  <label>Username:</label>
-                  <input type="text" name="username" id='loginUsername'/>
+                  <input name="username" id='username' placeholder="enter username"/>
                 </div>
                 <div className="field">
-                  <label>Password:</label>
-                  <input type="password" name="password" id='loginPassword'/>
+                  <input type="text" name="password" id='loginPassword' placeholder="enter password"/>
                 </div>
-                <span><button className="ui button" type="submit">Login!</button></span>
+                <Button className="ui button theme-text" type="submit">Login!</Button>
               </form>
             </Grid.Column>
           </Grid>

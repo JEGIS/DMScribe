@@ -16,7 +16,8 @@ class Menu extends Component {
   render () {
     if (this.props.currentTab === 'Landing' 
       || this.props.currentTab === 'Login'
-      || this.props.currentTab === 'Signup') {
+      || this.props.currentTab === 'Signup'
+      || this.props.currentTab === 'ForgotPW') {
       return null;
     }
 

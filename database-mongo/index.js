@@ -117,17 +117,16 @@ var getUserEmail = (username, callback) => {
 
 var resetPassword = (username, hash, email, callback) => {
   User.findOne({ username: username }, function (err, doc){
-    if (err || doc === null) {
+    if (err) {
       callback(err, null);
+    } else if (doc === null) {
+      callback(null, 'Username not found')
+    } else if (doc.email !== email) {
+      callback(null, 'Incorrect email')
     } else {
-      // prevent resetting email if attempted email is incorrect
-      if (doc.email !== email) {
-        callback(err, null);
-      } else {
-        doc.password = hash;
-        doc.save();
-        callback(null, doc)
-      }
+      doc.password = hash;
+      doc.save();
+      callback(null, 'Password has been changed')
     }
   });
 }

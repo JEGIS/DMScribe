@@ -151,11 +151,11 @@ app.post('/changePassword', (req, res) => {
   email = req.body.email;
 
   bcrypt.hash(password, saltRounds).then((hash) => {
-    db.resetPassword(username, hash, email, (err, success) => {
-      if (err || success === null) {
-        res.send('error')
+    db.resetPassword(username, hash, email, (err, done) => {
+      if (err) {
+        res.send('Sever error')
       } else {
-        res.send('success')
+        res.send(done)
       }
     })
   })
@@ -166,11 +166,13 @@ app.post('/changeEmail', (req, res) => {
   username = req.body.username;
   email = req.body.email;  
 
-  db.changeEmail(username, email, (err, success) => {
-    if (err || success === null) {
-      res.send('error')
+  db.changeEmail(username, email, (err, done) => {
+    if (err) {
+      res.send('Server error')
+    } else if (done === null) {
+      res.send('Could not find username')
     } else {
-      res.send('success')
+      res.send('Email has been changed')
     }
   })
 })
