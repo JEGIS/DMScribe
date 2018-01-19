@@ -36,13 +36,20 @@ class Signup extends Component {
     $('#signUpUsername').val('');
     $('#signUpPassword').val('');
     $('#signUpEmail').val(''); // added
+    if (userObj.username === '') {
+      alert('Enter username')
+    } else if (userObj.password === '') {
+      alert('Enter password')
+    } else if (userObj.email === '') {
+      alert('Enter email')
+    }
+
     if (userObj.username === '' || userObj.password === '' || userObj.email === '') {
       alert('signup failed'); // added
       return;
     } else {
       $.post('/signUp', userObj)
       .then(() => {
-        console.log(userObj.username);
         this.props.setUser(userObj.username);
         this.props.selectTab('Arena');
       })

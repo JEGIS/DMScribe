@@ -78,41 +78,6 @@ app.get('/classimg', (req, res1) => {
   });
 });
 
-app.post('/signUp', (req, res) => {
-  bcrypt.hash(req.body.password, saltRounds)
-  .then(hash => {
-    req.body.password = hash;
-    db.signUpUser(req.body, (err, success) => {
-      if (err) {
-        console.log(err)
-      } else {
-        res.sendStatus(201);
-      }
-    });
-  });
-})
-
-app.post('/login', (req, res) => {
-  db.getUsers(req.body.username, (err, user) => {
-    if (err) {
-    } else {
-      if (user.length === 0) {
-        res.sendStatus(400);
-      } else {
-        bcrypt.compare(req.body.password, user[0].password)
-        .then(result => {
-          if (result) {
-            res.sendStatus(201);
-          } else {
-            // add user notification of "wrong password"
-            res.send(400);
-          }
-        });
-      }
-    }
-  })
-})
-
 app.post('/savePlayer', (req, res) => {
   db.savePlayer(req.body, (err, success) => {
     if (err) {
@@ -200,7 +165,39 @@ app.get('/forgotPassword', (req, res) => {
   })
 })
 
+app.post('/login', (req, res) => {
+  db.getUsers(req.body.username, (err, user) => {
+    if (err) {
+      res.sendStatus(500)
+    } else {
+      if (user.length === 0) {
+        res.sendStatus(401);
+      } else {
+        bcrypt.compare(req.body.password, user[0].password)
+        .then(result => {
+          if (result) {
+            res.sendStatus(201);
+          } else {
+            res.send(402);
+          }
+        });
+      }
+    }
+  })
+})
 
-
+app.post('/signUp', (req, res) => {
+  bcrypt.hash(req.body.password, saltRounds)
+  .then(hash => {
+    req.body.password = hash;
+    db.signUpUser(req.body, (err, success) => {
+      if (err) {
+        console.log(err)
+      } else {
+        res.sendStatus(201);
+      }
+    });
+  });
+})
 
 

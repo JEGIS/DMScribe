@@ -39,13 +39,18 @@ class Login extends Component {
     } else {
       $.post('/login', userObj)
       .then((res) => {
-        alert(res);
         this.props.setUser(userObj.username);
         this.props.selectTab('Arena');
         this.props.fetchGroups(userObj.username);
       })
-      .catch(() => {
-        alert(' login Could not reach server');
+      .catch((res) => { // BUG: catch runs on every call
+        if (res.status === 401) {
+          alert('Could not find username')
+        } else if (res.status === 402) {
+          alert('Could not find password')
+        } else if (res.status === 500) {
+          alert('Server error')
+        }
         $('#username').val('');
         $('#loginPassword').val('');
       })      
