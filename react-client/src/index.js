@@ -12,8 +12,6 @@ import Menu from './containers/Menu';
 import LandingPage from './containers/LandingPage';
 import Login from './containers/tabs/Login';
 import Signup from './containers/tabs/Signup';
-import ForgotPW from './containers/tabs/ForgotPW';
-import AccountInfo from './containers/tabs/AccountInfo';
 
 
 class App extends React.Component {
@@ -47,8 +45,6 @@ class App extends React.Component {
           <Arena />
           <Players />
           <Monsters />
-          <ForgotPW />
-          <AccountInfo />
         </div>
       )
   }
