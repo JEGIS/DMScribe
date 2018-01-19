@@ -1,30 +1,66 @@
 import React, { Component } from 'react';
-import {Grid, Card, Button} from 'semantic-ui-react';
+import {Grid, Card, Button, Image} from 'semantic-ui-react';
+import { CSSTransitionGroup } from 'react-transition-group'
 
 class DiceRoller extends Component {
 	constructor(props) {
 	  super(props);
 	  this.state = {
-	    roll: ''
+	  	items: [],
+	    roll: []
 	  };
 	  this.handleClick = this.handleClick.bind(this);
-	  this.roll = this.roll.bind(this);
-	}
-
-	roll(number) {
-		return  Math.floor((Math.random() * number) + 1);
+	  this.handleAdd = this.handleAdd.bind(this);
 	}
 
 	handleClick(dice){
-		let number = this.roll(dice);
-		this.setState({'roll': number});
+		let roll = [Math.floor((Math.random() * dice) + 1), dice];
+		const newItems = this.state.items.concat([roll]);
+		this.setState({'items': newItems});
+	}
+
+	handleAdd() {
+	  const newItems = this.state.items.concat([
+	    prompt('Enter some text')
+	  ]);
+	  this.setState({items: newItems});
+	}
+
+	handleRemove(i) {
+	  let newItems = this.state.items.slice();
+	  newItems.splice(i, 1);
+	  this.setState({items: newItems});
 	}
 
 	render() {
+		const items = this.state.items.map((item, i) => {
+			let image = './images/d12.png'
+			if(item[1] === 4 || item[1] === 8){
+				image = './images/d4.png'
+			}
+			if(item[1] === 20){
+				image = './images/d20.png'
+			}
+			if(item[1] === 6){
+				image = './images/d6.png'
+			}
+			if(item[1] === 10){
+				image = './images/d10.png'
+			}
+
+			return (
+	    	<div className='dicePic roll'>
+	      	<img src={image} key={i} onClick={() => this.handleRemove(i)}/>
+	      	<div className='numberRoll'>{item[0]}</div>
+	      </div>
+	   	)
+		});
+
 		return (
-			<div className = 'dice theme-text"'>
+			<div className = 'dice theme-text diceRoller"'>
    			<Button.Group className="theme-text" size = 'large'>
    				<Button className="theme-text" onClick={() => this.handleClick(4)} color = 'red'>
+
    					{this.state.d4}
    					Roll D4
    				</Button>
@@ -53,8 +89,13 @@ class DiceRoller extends Component {
    					Roll D100
    				</Button>
    			</Button.Group>
-   			<div className = 'roll'>
- 					{this.state.roll}
+   			<div className = 'dice'>
+   				<CSSTransitionGroup
+	          transitionName="example"
+	          transitionEnterTimeout={500}
+	          transitionLeaveTimeout={300}>
+	          {items}
+   				</CSSTransitionGroup>
    			</div>
       </div>
 		)
