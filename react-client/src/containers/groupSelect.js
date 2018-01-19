@@ -69,11 +69,11 @@ class GroupSelect extends Component {
   render () {
     return (
       <Grid centered columns={2}>
-        <Grid.Column>
-          <div>
+        <Grid.Column className='theme-text'>
+          <div className='theme-text'>
             <Dropdown
             onSubmit={this.handleKeyPress}
-            className='monsterDropdown'
+            className='monsterDropdown theme-text'
             onClose={this.onClose}
             onFocus={this.onFocus}
             onChange={this.handleChange}
