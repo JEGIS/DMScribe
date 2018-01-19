@@ -57,10 +57,9 @@ class DiceRoller extends Component {
 		});
 
 		return (
-			<div className = 'dice theme-text diceRoller"'>
+			<div className = 'diceRoller theme-text"'>
    			<Button.Group className="theme-text" size = 'large'>
    				<Button className="theme-text" onClick={() => this.handleClick(4)} color = 'red'>
-
    					{this.state.d4}
    					Roll D4
    				</Button>
