@@ -31,27 +31,27 @@ class Signup extends Component {
     var userObj = {
       username: user[0].value,
       password: user[1].value,
-      email: user[2].value // added 
+      email: user[2].value
     }
-    $('#signUpUsername').val('');
-    $('#signUpPassword').val('');
-    $('#signUpEmail').val(''); // added
     if (userObj.username === '') {
       alert('Enter username')
     } else if (userObj.password === '') {
       alert('Enter password')
     } else if (userObj.email === '') {
       alert('Enter email')
-    }
-
-    if (userObj.username === '' || userObj.password === '' || userObj.email === '') {
-      alert('signup failed'); // added
-      return;
     } else {
       $.post('/signUp', userObj)
-      .then(() => {
+      .then((res) => {
         this.props.setUser(userObj.username);
         this.props.selectTab('Arena');
+      })
+      .catch((res) => {
+        if (res.status === 500) {
+          alert('Username already taken');
+        }
+        $('#signUpUsername').val('');
+        $('#signUpPassword').val('');
+        $('#signUpEmail').val('');
       })
     }
   }
@@ -109,7 +109,7 @@ class Signup extends Component {
                 </div>
                 <div className="field">
                   <label>Email:</label>
-                  <input type="text" name="email" placeholder="example@gmail.com"/>
+                  <input type="text" name="email" placeholder="example@gmail.com" id='signUpEmail'/>
                 </div>
                 <span><button className="ui button theme-text" type="submit">Sign up!!</button></span>
               </form>

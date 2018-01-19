@@ -32,13 +32,29 @@ class ForgotPW extends Component {
       username: user[0].value,
       email: user[1].value
     }
-    $.get('/forgotPassword', userObj)
-    .then((data) => {
-      console.log('data ', data);
-    })
-    .catch(() => {
-      console.log('Wrong username');
-    })
+    if (userObj.username === '') {
+      alert('Enter username');
+    } else if (userObj.email === '') {
+      alert('Enter email');
+    } else {
+      $.get('/forgotPassword', userObj)
+      .then((data) => {
+        alert('Password has been sent: ', data);
+      })
+      .catch((res) => {
+        if (res.status === 400) {
+          alert('Username not found');
+        } else if (res.status === 401) {
+          alert('Email not found');
+        } else if (res.status === 500) {
+          alert('Could not connect to database');
+        } else if (res.status === 501) {
+          alert('Failed to send email');
+        }
+        $('#username').val('');
+        $('#email').val('');
+      })      
+    }
   }
 
   render() {
@@ -81,11 +97,11 @@ class ForgotPW extends Component {
               <form className="ui form signupForm" onSubmit={(event) => {this.forgot(event)}}>
                 <div className="field">
                   <label>Username:</label>
-                  <input type="text" name="username" placeholder="enter username"/>
+                  <input type="text" name="username" placeholder="enter username" id="username"/>
                 </div>
                 <div className="field">
                   <label>Email:</label>
-                  <input type="text" name="email" placeholder="enter email"/>
+                  <input type="text" name="email" placeholder="enter email" id="email"/>
                 </div>
                 <span><button className="ui button" type="submit">Get new password</button></span>
               </form>

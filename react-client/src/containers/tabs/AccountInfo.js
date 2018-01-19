@@ -35,13 +35,19 @@ class AccountInfo extends Component {
     } else {
       $.post('/changePassword', userObj)
       .then((res) => {
-        alert(res)
+        alert('Your password has been changed')
         $('#username1').val('');
         $('#email1').val('');
         $('#password1').val('');
       })
       .catch((res) => {
-        alert('Could not reach server');
+        if (res.status === 400) {
+          alert('Username not found');
+        } else if (res.status === 401) {
+          alert('Incorrect email');
+        } else if (res.status === 500) {
+          alert('Could not connect to database');
+        }
         $('#username1').val('');
         $('#email1').val('');
         $('#password1').val('');

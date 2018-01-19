@@ -118,9 +118,13 @@ app.post('/changePassword', (req, res) => {
   bcrypt.hash(password, saltRounds).then((hash) => {
     db.resetPassword(username, hash, email, (err, done) => {
       if (err) {
-        res.send('Sever error')
+        res.sendStatus(500);
+      } else if (done === 400) {
+        res.sendStatus(400);
+      } else if (done === 401) {
+        res.sendStatus(401);
       } else {
-        res.send(done)
+        res.sendStatus(201);
       }
     })
   })
@@ -149,17 +153,21 @@ app.get('/forgotPassword', (req, res) => {
   password = helpers.makeid();
 
   bcrypt.hash(password, saltRounds).then((hash) => {
-    db.resetPassword(username, hash, email, (err, user) => {
-      if (user !== null) {
-        helpers.sendEmail(user.email, password, res)
+    db.resetPassword(username, hash, email, (err, done) => {
+      if (err) {
+        res.sendStatus(500);
+      } else if (done === 400) {
+        res.sendStatus(400);
+      } else if (done === 401) {
+        res.sendStatus(401);
+      } else {
+        helpers.sendEmail(done.email, password, res)
         .then((success) => {
-          res.send(success);
+          res.sendStatus(200);
         })
         .catch((err) => {
-          res.send(err);
-        });
-      } else {
-        res.send('error')
+          res.sendStatus(501);
+        });        
       }
     })
   })
@@ -192,7 +200,7 @@ app.post('/signUp', (req, res) => {
     req.body.password = hash;
     db.signUpUser(req.body, (err, success) => {
       if (err) {
-        console.log(err)
+        res.sendStatus(500);
       } else {
         res.sendStatus(201);
       }
