@@ -174,7 +174,7 @@ class Arena extends Component {
                 </div>
                 <div className="field">
                   <label>Class:</label>
-                  <select className="ui fluid dropdown" name="class"> 
+                  <select className="ui fluid dropdown" name="class"> className='theme-text'
                     <option value="">Class</option>
                     <option value="Barbarian">Barbarian</option>
                     <option value="Bard">Bard</option>

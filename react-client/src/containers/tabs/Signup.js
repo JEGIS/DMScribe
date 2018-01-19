@@ -64,7 +64,7 @@ class Signup extends Component {
 
     return (
         <div>
-          <Menu fixed='top' size='large'>
+          <Menu fixed='top' size='large' className='theme-background'>
             <Container>
               <Menu.Menu position='right'>
                 <Menu.Item className='item theme-text'>
@@ -96,7 +96,7 @@ class Signup extends Component {
               </Menu.Menu>
             </Container>
           </Menu>
-          <Grid centered columns={6}>
+          <Grid centered columns={5}>
             <Grid.Column className="theme-text">
               <form className="ui form signupForm" onSubmit={(event) => {this.signUp(event)}}>
                 <div className="field">

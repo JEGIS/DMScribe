@@ -65,14 +65,15 @@ class Login extends Component {
 
     return (
         <div>
-          <Menu fixed='top' size='large'>
+          <Menu fixed='top' size='large' className='theme-background'>
             <Container>
               <Menu.Menu position='right'>
                 <Menu.Item className='item'>
                   <Button
                   className="theme-text"
                   onClick={() => {this.props.selectTab('Landing')}}
-                  as='a'>Back to landing page</Button>
+                  as='a'
+                  primary>Back to landing page</Button>
                 </Menu.Item>
                 <Menu.Item className='item'>
                   <Button
@@ -99,12 +100,14 @@ class Login extends Component {
             </Container>
           </Menu>
           <Grid centered columns={5}>
-            <Grid.Column>
+            <Grid.Column className="theme-text">
               <form className="ui form signupForm" onSubmit={(event) => {this.login(event)}}>
                 <div className="field">
+                  <label>Username:</label>
                   <input name="username" id='username' placeholder="enter username"/>
                 </div>
                 <div className="field">
+                  <label>Password:</label>
                   <input type="text" name="password" id='loginPassword' placeholder="enter password"/>
                 </div>
                 <Button className="ui button theme-text" type="submit">Login!</Button>

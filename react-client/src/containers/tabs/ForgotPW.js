@@ -40,6 +40,8 @@ class ForgotPW extends Component {
       $.get('/forgotPassword', userObj)
       .then((data) => {
         alert('Password has been sent: ', data);
+        $('#username').val('');
+        $('#email').val('');
       })
       .catch((res) => {
         if (res.status === 400) {
@@ -64,27 +66,31 @@ class ForgotPW extends Component {
     }
     return (
       <div>
-        <Menu fixed='top' size='large'>
+        <Menu fixed='top' size='large' className='theme-background'>
           <Container>
             <Menu.Menu position='right'>
               <Menu.Item className='item'>
                 <Button
+                className='theme-text'
                 onClick={() => {this.props.selectTab('Landing')}}
                 as='a'>Back to landing page</Button>
               </Menu.Item>
               <Menu.Item className='item'>
                 <Button
+                className='theme-text'
                 onClick={() => {this.props.selectTab('Login')}}
                 as='a'>Log in</Button>
               </Menu.Item>
               <Menu.Item>
                 <Button 
+                className='theme-text'
                 onClick={() => {this.props.selectTab('Signup')}}
                 as='a' 
                 primary>Sign Up</Button>
               </Menu.Item>
               <Menu.Item>
                 <Button 
+                className='theme-text'
                 onClick={() => {this.props.selectTab('ForgotPW')}}
                 as='a' 
                 primary>Forgot password?</Button>
@@ -92,8 +98,8 @@ class ForgotPW extends Component {
             </Menu.Menu>
           </Container>
         </Menu>
-          <Grid centered columns={6}>
-            <Grid.Column>
+          <Grid centered columns={5}>
+            <Grid.Column className="theme-text">
               <form className="ui form signupForm" onSubmit={(event) => {this.forgot(event)}}>
                 <div className="field">
                   <label>Username:</label>
@@ -103,7 +109,7 @@ class ForgotPW extends Component {
                   <label>Email:</label>
                   <input type="text" name="email" placeholder="enter email" id="email"/>
                 </div>
-                <span><button className="ui button" type="submit">Get new password</button></span>
+                <button className="ui button theme-text" type="submit">Get new password</button>
               </form>
             </Grid.Column>
           </Grid>

@@ -25,7 +25,6 @@ class AccountInfo extends Component {
       email: user[1].value,
       password: user[2].value
     }
-    console.log(userObj.username, userObj.email, userObj.password )
     if (userObj.username === '') {
       alert('Enter your username');
     } else if (userObj.email === '') {
@@ -86,7 +85,7 @@ class AccountInfo extends Component {
       return null;
     }
     return (
-      <Grid centered columns={3}>
+      <Grid centered columns={5}>
         <Grid.Column className="test">
 
           <Form className="ui form signupForm" onSubmit={(event) => {this.changePassword(event)}}>

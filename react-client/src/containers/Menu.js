@@ -24,10 +24,10 @@ class Menu extends Component {
   	return(
       <div>
       <Wrapper>
-      <div className="background-theme">
+      <div className="theme-background">
         {this.props.user 
           ?
-            <div className="ui menu background-theme">
+            <div className="ui menu theme-background">
               <a
                 className='item theme-text'
                 onClick={() => {this.props.selectTab('AccountInfo')}}
@@ -45,7 +45,7 @@ class Menu extends Component {
               >Log out!</a>
             </div>  
           :
-            <div className="ui menu background-theme">
+            <div className="ui menu theme-background">
               <a
                 className="item theme-text" 
                 onClick={() => {this.props.selectTab('Login')}}

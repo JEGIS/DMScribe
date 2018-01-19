@@ -56,14 +56,15 @@ class LandingPage extends Component {
               <img id="landing-image" className="ui large right floated image" src="https://png.icons8.com/ultraviolet/540/icosahedron.png"/>
             </Container>
           </div>
-          <Menu fixed='top' size='large'>
+          <Menu fixed='top' size='large' className='theme-background'>
             <Container>
               <Menu.Menu position='right'>
                 <Menu.Item className='item'>
                   <Button
                   className="theme-text"
                   onClick={() => {this.props.selectTab('Login')}}
-                  as='a'>Log in!</Button>
+                  as='a'
+                  primary>Log in!</Button>
                 </Menu.Item>
                 <Menu.Item>
                   <Button 
