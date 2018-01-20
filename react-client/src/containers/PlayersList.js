@@ -49,7 +49,7 @@ class PlayersList extends Component {
                     onClick={() => {
                       if (this.props.monsters.length) {
                       this.props.removePlayer(player.name);
-                      this.props.generateTurnOrder();                      
+                      //this.props.generateTurnOrder();                      
                       } else {
                         this.props.removePlayer(player.name);
                       }
