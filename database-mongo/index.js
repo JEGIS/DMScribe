@@ -51,6 +51,7 @@ var signUpUser = (user, callback) => {
 }
 
 var getUsers = function (name, callback) {
+  console.log('getUsers: ', name)
   User.find({username: name}, function (err, users) {
     if (err) {
       callback(err, null)
@@ -115,28 +116,14 @@ var getUserEmail = (username, callback) => {
 }
 
 
-var resetPassword = (username, hash, email, callback) => {
+var resetPassword = (username, hash, callback) => {
   User.findOne({ username: username }, function (err, doc){
     if (err) {
-      callback(err, null); // could not query
-    } else if (doc === null) {
-      callback(null, 400) // username not found
-    } else if (doc.email !== email) {
-      callback(null, 401) // email not found
-    } else {
-      doc.password = hash;
-      doc.save();
-      callback(null, doc) // success
-    }
-  });
-}
-
-var changeEmail = (username, email, callback) => {
-  User.findOne({ username: username }, function (err, doc){
-    if (err || doc === null) {
       callback(err, null);
     } else {
-      doc.email = email;
+      //var random = 12345; // make random
+
+      doc.password = hash;
       doc.save();
       callback(null, doc)
     }
@@ -150,4 +137,3 @@ exports.getGroups = getGroups;
 exports.specificGroup = specificGroup;
 exports.getUserEmail = getUserEmail;
 exports.resetPassword = resetPassword;
-exports.changeEmail = changeEmail;
