@@ -102,7 +102,7 @@ class MonstersList extends Component {
                           </Card.Description>
                         </Card.Content>
                         <Card.Content extra>
-                          <Modal size='mini'
+                          <Modal size='small'
                             trigger=
                             {
                               <a>
@@ -114,7 +114,7 @@ class MonstersList extends Component {
                             closeIcon
                           >
                             <Modal.Content image>
-                              <Card className='cards'>
+                              <Card className='cards' fluid>
                                 <div className='monsterImgContainer'>
                                   <Image className='monsterImg' src={monster.image}/>
                                 </div>
