@@ -12,6 +12,7 @@ import {
   Menu,
   Segment,
   Visibility,
+  Link
 } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';

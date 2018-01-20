@@ -85,21 +85,24 @@ class ForgotPW extends Component {
                 <Button 
                 className='theme-text'
                 onClick={() => {this.props.selectTab('Signup')}}
-                as='a' 
-                primary>Sign Up</Button>
+                as='a'>Sign Up</Button>
               </Menu.Item>
               <Menu.Item>
                 <Button 
                 className='theme-text'
                 onClick={() => {this.props.selectTab('ForgotPW')}}
-                as='a' 
-                primary>Forgot password?</Button>
+                as='a'>Forgot password?</Button>
               </Menu.Item>
             </Menu.Menu>
           </Container>
         </Menu>
+          <br/>
+          <br/>
+          <br/>
+          <br/>
+          <br/>
           <Grid centered columns={5}>
-            <Grid.Column className="theme-text">
+            <Grid.Column className="ui center aligned segment theme-text test">
               <form className="ui form signupForm" onSubmit={(event) => {this.forgot(event)}}>
                 <div className="field">
                   <label>Username:</label>

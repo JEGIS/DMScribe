@@ -23,11 +23,13 @@ class Menu extends Component {
 
   	return(
       <div>
+       
       <Wrapper>
       <div className="theme-background">
         {this.props.user 
           ?
             <div className="ui menu theme-background">
+
               <a
                 className='item theme-text'
                 onClick={() => {this.props.selectTab('AccountInfo')}}

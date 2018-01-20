@@ -108,7 +108,7 @@ class Login extends Component {
                 </div>
                 <div className="field">
                   <label>Password:</label>
-                  <input type="text" name="password" id='loginPassword' placeholder="enter password"/>
+                  <input type="password" name="password" id='loginPassword' placeholder="enter password"/>
                 </div>
                 <Button className="ui button theme-text" type="submit">Login!</Button>
               </form>

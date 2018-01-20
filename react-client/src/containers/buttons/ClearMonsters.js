@@ -26,7 +26,7 @@ class ClearMonsters extends Component {
     if (this.props.monsters.length === 0) {
       return null;
     }
-
+    
   	return(
       <Modal 
         trigger={<Button onClick={this.toggleOn}>Clear Monsters</Button>}
