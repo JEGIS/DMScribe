@@ -49,9 +49,9 @@ class LandingPage extends Component {
                 style={{ backgroundColor: 'transparent', fontSize: '1.7em', color:'white', fontWeight: 'normal' }}
               />
               <Button 
-              className="theme-text"
+              className="theme-text theme-button"
               onClick={() => {this.props.selectTab('Arena')}}
-              primary size='huge'>
+              size='huge'>
                 Roll for Initiative!
                 <Icon name='right arrow'/>
               </Button>
