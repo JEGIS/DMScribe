@@ -46,7 +46,7 @@ class ClearPlayers extends Component {
             color='green'
             inverted
             onClick={() => {
-              this.toggleOff;
+              this.toggleOff();
               clearPlayersField();
               clearOrderField();
             }}

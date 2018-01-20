@@ -46,7 +46,7 @@ class ClearMonsters extends Component {
             color='green'
             inverted
             onClick={() => {
-              this.toggleOff;
+              this.toggleOff();
               clearMonstersField();
               clearOrderField();
             }} 
