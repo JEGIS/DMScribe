@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Card, Icon, Image } from 'semantic-ui-react'
+import { Card, Icon, Image, Modal, Button } from 'semantic-ui-react'
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { removeMonster, generateTurnOrder, assignMonTurnValue, selectMonster, selectTab, clearOrderField } from '../actions/index';
@@ -8,6 +8,12 @@ import { removeMonster, generateTurnOrder, assignMonTurnValue, selectMonster, se
 class MonstersList extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      monsterExtraModal: false,
+    };
+
+    this.openMonsterExtra = this.openMonsterExtra.bind(this);
+    this.closeMonsterExtra = this.closeMonsterExtra.bind(this);
   }
 
   handleOnBlur(e) {
@@ -18,6 +24,14 @@ class MonstersList extends Component {
     if (e.keyCode === 13) {
       assignMonTurnValue(e.target.id, e.target.value);
     }
+  }
+
+  openMonsterExtra () {
+    this.setState({monsterExtraModal: true});
+  }
+
+  closeMonsterExtra () {
+    this.setState({monsterExtraModal: false});
   }
 
   render () {
@@ -88,17 +102,72 @@ class MonstersList extends Component {
                           </Card.Description>
                         </Card.Content>
                         <Card.Content extra>
-                          <a 
-                            onClick={() => {
-                              this.props.selectMonster(monster);
-                              this.props.selectTab('Monsters');
-                              window.scrollTo(0,0);
-                            }}
+                          <Modal size='mini'
+                            trigger=
+                            {
+                              <a>
+                                <Icon 
+                                name='address card outline' />
+                                Monster Info
+                              </a>
+                            }
+                            closeIcon
                           >
-                            <Icon 
-                            name='address card outline' />
-                            More Monster Info
-                          </a>
+                            <Modal.Content image>
+                              <Card className='cards'>
+                                <div className='monsterImgContainer'>
+                                  <Image className='monsterImg' src={monster.image}/>
+                                </div>
+                                <Card.Content>
+                                  <Card.Header>
+                                    {monster.name} 
+                                  </Card.Header>
+                                  <Card.Meta>
+                                    <div className='date'>
+                                      {`Alignment: ${monster.alignment}`}
+                                    </div>
+                                    <div>
+                                      {`Languages: ${monster.languages}`}
+                                    </div>
+                                  </Card.Meta>
+                                  <Card.Description>
+                                      {monster.actions 
+                                        ?
+                                          <div className='actionsDiv'> <strong>Actions: </strong><br/>
+                                            {monster.actions.map((action) => {
+                                              return <div className='actionSkill' key={action.name}>
+                                                        <p><strong>Name: </strong>{action.name}</p> 
+                                                        {action.attack_bonus ? <p><strong>Attack bonus: </strong>{action.attack_bonus}</p> : null}
+                                                        {action.damage_bonus ? <p><strong>Damage bonus: </strong>{action.damage_bonus}</p> : null}
+                                                        {action.damage_dice ? <p><strong>Damage dice: </strong>{action.damage_dice}</p> : null}
+                                                        <p> <strong>Description: </strong>{action.desc}</p>
+                                                     </div>
+                                            })}
+                                          </div>
+                                        : null
+                                      }
+                                      <p className='selectedStats'>
+                                        <span className='selectedStat'><strong>AC:</strong> {monster.armor_class}</span>
+                                        <span className='selectedStat'><strong>HP:</strong> {monster.hit_points}</span>
+                                        <span className='selectedStat'><strong>INIT:</strong> {monster.init}</span>
+                                        <span className='selectedStat'><strong>STR:</strong> {monster.strength}</span>
+                                      </p>
+                                      <p className='selectedStats'>
+                                        <span className='selectedStat'><strong>DEX:</strong> {monster.dexterity}</span>
+                                        <span className='selectedStat'><strong>CON:</strong> {monster.constitution}</span>
+                                        <span className='selectedStat'><strong>WIS:</strong> {monster.wisdom}</span>
+                                        <span className='selectedStat'><strong>CHA:</strong> {monster.charisma}</span>
+                                      </p>
+                                      <p className='selectedStats'>
+                                      </p>
+                                  </Card.Description>
+                                </Card.Content>
+                                <Card.Content extra>
+                                  <span><strong>Senses: </strong>{monster.senses}</span>
+                                </Card.Content>
+                              </Card>
+                            </Modal.Content>
+                          </Modal>
                           {/*This icon is the red X in the corner and triggers the redux Action that
                           remove the monster from the redux monsters array. It also triggers the redux
                           Action that regenerates the turn order based on the new redux monster array*/}

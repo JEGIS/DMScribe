@@ -10,20 +10,14 @@ class DiceRoller extends Component {
 	    roll: []
 	  };
 	  this.handleClick = this.handleClick.bind(this);
-	  this.handleAdd = this.handleAdd.bind(this);
 	}
 
 	handleClick(dice){
-		let roll = [Math.floor((Math.random() * dice) + 1), dice];
-		const newItems = this.state.items.concat([roll]);
-		this.setState({'items': newItems});
-	}
-
-	handleAdd() {
-	  const newItems = this.state.items.concat([
-	    prompt('Enter some text')
-	  ]);
-	  this.setState({items: newItems});
+    if(this.state.items.length < 5){
+  		let roll = [Math.floor((Math.random() * dice) + 1), dice];
+  		const newItems = this.state.items.concat([roll]);
+  		this.setState({'items': newItems});
+    }
 	}
 
 	handleRemove(i) {
@@ -91,7 +85,7 @@ class DiceRoller extends Component {
    			<div className = 'dice'>
    				<CSSTransitionGroup
 	          transitionName="example"
-	          transitionEnterTimeout={500}
+	          transitionEnterTimeout={700}
 	          transitionLeaveTimeout={300}>
 	          {items}
    				</CSSTransitionGroup>

@@ -25,7 +25,8 @@ class Arena extends Component {
       monsters: [],
       players: [],
       monsterModal: false,
-      playerModal: false
+      playerModal: false,
+      monsterExtraModal: false,
     };
     this.onMonsterFormSubmit = this.onMonsterFormSubmit.bind(this);
     this.onPlayerFormSubmit = this.onPlayerFormSubmit.bind(this);
@@ -34,6 +35,8 @@ class Arena extends Component {
     this.closeMonster = this.closeMonster.bind(this);
     this.openPlayer = this.openPlayer.bind(this);
     this.closePlayer = this.closePlayer.bind(this);
+    this.openMonsterExtra = this.openMonsterExtra.bind(this);
+    this.closeMonsterExtra = this.closeMonsterExtra.bind(this);
   }
 
   onMonsterFormSubmit (event) {
@@ -82,6 +85,14 @@ class Arena extends Component {
 
   closeMonster () {
     this.setState({monsterModal: false});
+  }
+
+  openMonsterExtra () {
+    this.setState({monsterExtraModal: true});
+  }
+
+  closeMonsterExtra () {
+    this.setState({monsterExtraModal: false});
   }
 
   openPlayer () {

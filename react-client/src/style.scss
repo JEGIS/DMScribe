@@ -285,6 +285,7 @@ label {
 }
 
 .roll{
+  float: left;
   position: relative;
   text-align: center;
   margin: 15px auto;
@@ -339,11 +340,14 @@ div.logo {
 
 .example-enter {
   opacity: 0.01;
+  margin-left: 1000px;
   transition: width 2s, height 2s, transform 2s;
 
 }
 
 .example-enter.example-enter-active {
+  display: inline-block;
+  margin-left:0px;
   opacity: 1;
   animation:spin 500ms linear infinite;
   transition: 1000ms, transform 2s;
@@ -358,7 +362,7 @@ div.logo {
   transition: opacity 300ms ease-in;
 }
 
-@keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
+@keyframes spin { 100% { -webkit-transform: rotate(-360deg); transform:rotate(-360deg); } }
 
 
 
