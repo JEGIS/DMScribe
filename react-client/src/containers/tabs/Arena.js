@@ -111,6 +111,7 @@ class Arena extends Component {
 
     return (
       <Wrapper>
+      <img src="https://i.imgur.com/f60kcjD.jpg" id="bg" alt=""/>
       <div>
         <GroupSelect />
         <DropdownExampleSearchSelection />

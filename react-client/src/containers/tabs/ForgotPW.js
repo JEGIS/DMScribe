@@ -66,6 +66,7 @@ class ForgotPW extends Component {
     }
     return (
       <div>
+        <img src="https://i.imgur.com/f60kcjD.jpg" id="bg" alt=""/>
         <Menu fixed='top' size='large' className='theme-background'>
           <Container>
             <Menu.Menu position='right'>

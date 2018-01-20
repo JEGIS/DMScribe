@@ -33,6 +33,7 @@ class LandingPage extends Component {
 
   		return (
         <div>
+          <img src="https://i.imgur.com/f60kcjD.jpg" id="bg" alt=""/>
           <div className="ui grid">
             <Container>
               <Header
