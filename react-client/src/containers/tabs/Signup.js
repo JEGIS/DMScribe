@@ -37,8 +37,8 @@ class Signup extends Component {
       alert('Enter username')
     } else if (userObj.password === '') {
       alert('Enter password')
-    } else if (userObj.email === '') {
-      alert('Enter email')
+    //} else if (userObj.email === '') {
+    //  alert('Enter email')
     } else {
       $.post('/signUp', userObj)
       .then((res) => {
@@ -108,7 +108,7 @@ class Signup extends Component {
                 </div>
                 <div className="field">
                   <label>Email:</label>
-                  <input type="text" name="email" placeholder="example@gmail.com" id='signUpEmail'/>
+                  <input type="text" name="email" placeholder="example@gmail.com (optional)" id='signUpEmail'/>
                 </div>
                 <span><button className="ui button theme-text theme-button" type="submit">Sign up!!</button></span>
               </form>
