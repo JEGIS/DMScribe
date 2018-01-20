@@ -285,7 +285,7 @@ label {
 }
 
 .roll{
-  float: left;
+  display: inline-block;
   position: relative;
   text-align: center;
   margin: 15px 10px;
@@ -297,7 +297,8 @@ label {
 
 .diceRoller{
   width: 800px;
-  margin: 20px auto;
+  height: 160px;
+  margin: 50px auto;
 }
 
 .numberRoll{
@@ -353,6 +354,11 @@ div.logo {
 .example-leave.example-leave-active {
   opacity: 0.01;
   transition: opacity 300ms ease-in;
+}
+
+.dice{
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 @keyframes spin { 100% { -webkit-transform: rotate(-360deg); transform:rotate(-360deg); } }
