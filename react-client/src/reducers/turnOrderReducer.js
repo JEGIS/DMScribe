@@ -10,6 +10,8 @@ const turnOrderReducer = (state = [], action) => {
     return action.payload
   } else if (action.type === 'LOGOUT_RESET') {
     return [];
+  } else if (action.type === 'DEFER_TURN') {
+    return action.payload;
   }
   return state;
 };
