@@ -72,7 +72,7 @@ class DropdownExampleSearchSelection extends Component {
     return (
       <Grid centered columns={2}>
         <Grid.Column>
-          <div>
+          <div className='theme-text'>
             <Dropdown
             onSubmit={this.handleKeyPress}
             className='monsterDropdown'

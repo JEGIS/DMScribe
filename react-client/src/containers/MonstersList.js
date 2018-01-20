@@ -55,7 +55,7 @@ class MonstersList extends Component {
                           <Image className='monsterImg' src={monster.image}/>
                         </div>
                         <Card.Content>
-                          <Card.Header>
+                          <Card.Header className='theme-text'>
                             {monster.name} 
                           </Card.Header>
                           <Card.Meta>

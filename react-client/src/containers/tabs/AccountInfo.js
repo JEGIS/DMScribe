@@ -104,17 +104,17 @@ class AccountInfo extends Component {
               <div>
                 <input placeholder="new password" name="password" id="password1"/>
               </div>
-              <span><Button className="ui button" type="submit">Submit</Button></span>
+              <span><Button className="ui button theme-text theme-button" type="submit">Submit</Button></span>
             </Form>
 
             <Form className="ui form signupForm" onSubmit={(event) => {this.changeEmail(event)}}>
               <div> Change Email:
-                <input placeholder="enter username" name="username" id="username2"/>
+                <input placeholder="confirm username" name="username" id="username2"/>
               </div>
               <div>
-                <input placeholder="enter new email" name="email" id="email2"/>
+                <input placeholder="new email" name="email" id="email2"/>
               </div>
-              <Button className="ui button" type="submit">Submit</Button>
+              <Button className="ui button theme-text theme-button" type="submit">Submit</Button>
             </Form>
 
           </Grid.Column>
