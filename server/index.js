@@ -119,9 +119,9 @@ app.post('/changePassword', (req, res) => {
     db.resetPassword(username, hash, email, (err, done) => {
       if (err) {
         res.sendStatus(500);
-      } else if (done === 400) {
+      } else if (done === null) {
         res.sendStatus(400);
-      } else if (done === 401) {
+      } else if (done === undefined) {
         res.sendStatus(401);
       } else {
         res.sendStatus(201);
@@ -156,9 +156,9 @@ app.get('/forgotPassword', (req, res) => {
     db.resetPassword(username, hash, email, (err, done) => {
       if (err) {
         res.sendStatus(500);
-      } else if (done === 400) {
+      } else if (done === null) {
         res.sendStatus(400);
-      } else if (done === 401) {
+      } else if (done === undefined) {
         res.sendStatus(401);
       } else {
         helpers.sendEmail(done.email, password, res)

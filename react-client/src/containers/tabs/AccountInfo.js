@@ -45,7 +45,7 @@ class AccountInfo extends Component {
       })
       .catch((res) => {
         if (res.status === 400) {
-          alert('Username not found');
+          alert('Incorrect username');
         } else if (res.status === 401) {
           alert('Incorrect email');
         } else if (res.status === 500) {

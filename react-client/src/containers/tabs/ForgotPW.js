@@ -45,9 +45,9 @@ class ForgotPW extends Component {
       })
       .catch((res) => {
         if (res.status === 400) {
-          alert('Username not found');
+          alert('Incorrect username');
         } else if (res.status === 401) {
-          alert('Email not found');
+          alert('Incorrect email');
         } else if (res.status === 500) {
           alert('Could not connect to database');
         } else if (res.status === 501) {
