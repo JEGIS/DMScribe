@@ -43,7 +43,7 @@ class DiceRoller extends Component {
 			}
 
 			return (
-	    	<div className='dicePic roll'>
+	    	<div className='roll'>
 	      	<img src={image} key={i} onClick={() => this.handleRemove(i)}/>
 	      	<div className='numberRoll'>{item[0]}</div>
 	      </div>
