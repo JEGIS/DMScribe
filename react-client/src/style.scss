@@ -299,14 +299,13 @@ label {
   margin: 15px 10px;
   color: white;
   font-family: helvetica;
-  font-size: 24px;
+  font-size: 23px;
   font-weight: bold;
 }
 
 .diceRoller{
   width: 800px;
-  height: 160px;
-  margin: 50px auto;
+  margin: 15px auto;
 }
 
 .numberRoll{
@@ -353,7 +352,7 @@ div.logo {
 .example-enter.example-enter-active {
   margin-left:0px;
   opacity: 1;
-  animation:spin 500ms linear infinite;
+  animation:spin 400ms linear infinite;
   transition: 1000ms, transform 2s;
 }
 

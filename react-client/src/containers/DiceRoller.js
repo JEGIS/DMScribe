@@ -85,7 +85,7 @@ class DiceRoller extends Component {
    			<div className = 'dice'>
    				<CSSTransitionGroup
 	          transitionName="example"
-	          transitionEnterTimeout={700}
+	          transitionEnterTimeout={800}
 	          transitionLeaveTimeout={300}>
 	          {items}
    				</CSSTransitionGroup>
