@@ -2,7 +2,15 @@ body {
   margin-top: 10px;
   margin-left: 10px;
   font-family: helvetica;
-  background: #293f50;
+  //background: #293f50;
+  //https://i.imgur.com/aDwbm3Q.png
+  //https://i.imgur.com/KcQxUBk.png - cropped screenshot
+  //https://i.imgur.com/3bZvVv8.jpg - cropped w/ photo editor
+  //https://i.imgur.com/17j7kzq.jpg
+  //https://i.imgur.com/f60kcjD.jpg - photoshopped
+  background-image: url('https://i.imgur.com/f60kcjD.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
 
 h1 {
@@ -319,19 +327,21 @@ div.logo {
   // height: 5% !important;
   // width: 5% !important;
   margin: auto auto !important;
-  //font-family: 'Inknut Antiqua', serif !important;
   font-size: 1.5em !important;
-  background-color: radial-gradient(#ffcc66, #663300) !important;
 }
 
 .theme-background {
-  background-image: radial-gradient(#ffcc66, #663300) !important;//radial-gradient(#ffcc66, #663300) !important;  
+   background-image: radial-gradient(#ffcc66, #663300) !important;
 }
 
 .theme-text {
   font-family: 'Inknut Antiqua', serif !important;
   font-size: 1em !important;
+}
 
+.theme-button {
+  margin: auto auto !important;
+  background-image: radial-gradient(#ffcc66, #663300) !important;
 }
 
 .example-enter {

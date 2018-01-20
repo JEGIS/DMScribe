@@ -13,6 +13,7 @@ import ClearPlayers from '../buttons/ClearPlayers';
 import ClearMonsters from '../buttons/ClearMonsters';
 import DropdownExampleSearchSelection from '../SearchBar';
 import styles from 'styled-components';
+import GroupSelect from '../groupSelect';
 
 const Wrapper = styles.div`
   margin: .7% 8%;
@@ -111,6 +112,7 @@ class Arena extends Component {
     return (
       <Wrapper>
       <div>
+        <GroupSelect />
         <DropdownExampleSearchSelection />
         <DiceRoller />
         <div className="buttonsWrapper">

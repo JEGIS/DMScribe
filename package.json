@@ -24,7 +24,6 @@
     "express": "^4.15.0",
     "jquery": "^3.1.1",
     "mongoose": "^4.8.6",
-    "node-sass": "^4.7.2",
     "nodemailer": "^4.4.1",
     "nodemon": "^1.14.7",
     "react": "^15.4.2",
@@ -33,10 +32,16 @@
     "react-transition-group": "^1.2.1",
     "redux": "^3.7.2",
     "redux-logger": "^3.0.6",
-    "sass-loader": "^6.0.6",
     "semantic-ui-react": "^0.77.1",
     "style-loader": "^0.19.1",
-    "styled-components": "^2.4.0",
-    "webpack": "^2.2.1"
+    "styled-components": "^2.4.0"
+  },
+  "devDependencies": {
+    "file-loader": "^1.1.6",
+    "image-webpack-loader": "^3.4.2",
+    "node-sass": "^4.7.2",
+    "sass-loader": "^6.0.6",
+    "url-loader": "^0.6.2",
+    "webpack": "^2.7.0"
   }
 }
