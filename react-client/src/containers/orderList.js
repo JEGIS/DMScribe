@@ -57,9 +57,11 @@ class OrderList extends Component {
                       </Card>
                     )
                 })}
-        <Button content="Move Player Left" />
-        <Button content="Move Player Right" />
         </Card.Group>
+        <div className="buttonsWrapper">
+        <Button className= "theme-button" content="Move Player Left" />
+        <Button className= "theme-button" content="Move Player Right" />
+        </div>
       </div>
     );
   }
