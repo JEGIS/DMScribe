@@ -22,7 +22,7 @@ class MenuX extends Component {
     }
 
   	return(
-      <Wrapper>
+      <Wrapper className="menuBar">
       <div className="theme-background">
         {this.props.user 
           ?
@@ -33,7 +33,7 @@ class MenuX extends Component {
                   <Button
                   className="theme-text theme-button"
                   onClick={() => {this.props.selectTab('Arena')}}
-                  as='a'> DM-Scribe </Button>
+                  as='a'> Home </Button>
                 </Menu.Item>
                 <Menu.Item className='item'>
                   <Button

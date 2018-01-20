@@ -11,6 +11,10 @@ import $ from 'jquery';
 import styles from 'styled-components';
 import { Button, Grid, Form } from 'semantic-ui-react';
 
+const Wrapper = styles.div`
+  margin: .7% 8%;
+`;
+
 class AccountInfo extends Component {
   constructor(props) {
     super(props);
@@ -85,10 +89,10 @@ class AccountInfo extends Component {
       return null;
     }
     return (
-      <div>
+      <Wrapper>
         <img src="https://i.imgur.com/f60kcjD.jpg" id="bg" alt=""/>
         <Grid centered columns={5}>
-          <Grid.Column className="test">
+          <Grid.Column className="theme-text">
 
             <Form className="ui form signupForm" onSubmit={(event) => {this.changePassword(event)}}>
               <div> Change Password:
@@ -115,7 +119,7 @@ class AccountInfo extends Component {
 
           </Grid.Column>
         </Grid>
-      </div>
+      </Wrapper>
     );
   }
 }
