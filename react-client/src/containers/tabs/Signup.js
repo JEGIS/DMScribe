@@ -70,29 +70,27 @@ class Signup extends Component {
               <Menu.Menu position='right'>
                 <Menu.Item className='item theme-text'>
                   <Button
-                  className="theme-text"
+                  className="theme-text theme-button"
                   onClick={() => {this.props.selectTab('Landing')}}
                   as='a'>Back to landing page</Button>
                 </Menu.Item>
                 <Menu.Item className='item'>
                   <Button 
-                  className="theme-text"
+                  className="theme-text theme-button"
                   onClick={() => {this.props.selectTab('Login')}}
                   as='a'>Log in</Button>
                 </Menu.Item>
                 <Menu.Item>
                   <Button 
-                  className="theme-text"
+                  className="theme-text theme-button"
                   onClick={() => {this.props.selectTab('Signup')}}
-                  as='a' 
-                  primary>Sign Up</Button>
+                  as='a'>Sign Up</Button>
                 </Menu.Item>
                 <Menu.Item>
                   <Button 
-                  className="theme-text"
+                  className="theme-text theme-button"
                   onClick={() => {this.props.selectTab('ForgotPW')}}
-                  as='a' 
-                  primary>Forgot password?</Button>
+                  as='a'>Forgot password?</Button>
                 </Menu.Item>
               </Menu.Menu>
             </Container>
@@ -112,7 +110,7 @@ class Signup extends Component {
                   <label>Email:</label>
                   <input type="text" name="email" placeholder="example@gmail.com" id='signUpEmail'/>
                 </div>
-                <span><button className="ui button theme-text" type="submit">Sign up!!</button></span>
+                <span><button className="ui button theme-text theme-button" type="submit">Sign up!!</button></span>
               </form>
             </Grid.Column>
           </Grid>

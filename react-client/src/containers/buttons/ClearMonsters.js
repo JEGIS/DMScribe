@@ -29,7 +29,7 @@ class ClearMonsters extends Component {
     
   	return(
       <Modal 
-        trigger={<Button onClick={this.toggleOn}>Clear Monsters</Button>}
+        trigger={<Button className="theme-text theme-button" onClick={this.toggleOn}>Clear Monsters</Button>}
         basic size='small'
         open={this.state.toggle}
         onClose={this.toggleOff}

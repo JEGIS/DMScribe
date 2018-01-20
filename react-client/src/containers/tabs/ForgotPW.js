@@ -45,9 +45,9 @@ class ForgotPW extends Component {
       })
       .catch((res) => {
         if (res.status === 400) {
-          alert('Username not found');
+          alert('Incorrect username');
         } else if (res.status === 401) {
-          alert('Email not found');
+          alert('Incorrect email');
         } else if (res.status === 500) {
           alert('Could not connect to database');
         } else if (res.status === 501) {
@@ -72,25 +72,25 @@ class ForgotPW extends Component {
             <Menu.Menu position='right'>
               <Menu.Item className='item'>
                 <Button
-                className='theme-text'
+                className='theme-text theme-button'
                 onClick={() => {this.props.selectTab('Landing')}}
                 as='a'>Back to landing page</Button>
               </Menu.Item>
               <Menu.Item className='item'>
                 <Button
-                className='theme-text'
+                className='theme-text theme-button'
                 onClick={() => {this.props.selectTab('Login')}}
                 as='a'>Log in</Button>
               </Menu.Item>
               <Menu.Item>
                 <Button 
-                className='theme-text'
+                className='theme-text theme-button'
                 onClick={() => {this.props.selectTab('Signup')}}
                 as='a'>Sign Up</Button>
               </Menu.Item>
               <Menu.Item>
                 <Button 
-                className='theme-text'
+                className='theme-text theme-button'
                 onClick={() => {this.props.selectTab('ForgotPW')}}
                 as='a'>Forgot password?</Button>
               </Menu.Item>
@@ -103,7 +103,7 @@ class ForgotPW extends Component {
           <br/>
           <br/>
           <Grid centered columns={5}>
-            <Grid.Column className="ui center aligned segment theme-text test">
+            <Grid.Column className="theme-text">
               <form className="ui form signupForm" onSubmit={(event) => {this.forgot(event)}}>
                 <div className="field">
                   <label>Username:</label>
@@ -113,7 +113,7 @@ class ForgotPW extends Component {
                   <label>Email:</label>
                   <input type="text" name="email" placeholder="enter email" id="email"/>
                 </div>
-                <button className="ui button theme-text" type="submit">Get new password</button>
+                <button className="ui button theme-text theme-button" type="submit">Get new password</button>
               </form>
             </Grid.Column>
           </Grid>

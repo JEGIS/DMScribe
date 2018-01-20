@@ -2,30 +2,6 @@ body {
   margin-top: 10px;
   margin-left: 10px;
   font-family: helvetica;
-  //background: #293f50;
-  //https://i.imgur.com/aDwbm3Q.png
-  //https://i.imgur.com/KcQxUBk.png - cropped screenshot
-  //https://i.imgur.com/3bZvVv8.jpg - cropped w/ photo editor
-  //https://i.imgur.com/17j7kzq.jpg
-  //https://i.imgur.com/f60kcjD.jpg - photoshopped
-  //https://i.imgur.com/xZTJy3e.jpg - high def
-  
-  // background-image: url('https://i.imgur.com/f60kcjD.jpg');
-  
-  // background-repeat: no-repeat;
-  // background-attachment: fixed;
-  // /* Set rules to fill background */
-  // min-height: 100%;
-  // min-width: 1024px;
-  
-  // /* Set up proportionate scaling */
-  // width: 100%;
-  // height: auto;
-  
-  // /* Set up positioning */
-  // position: fixed;
-  // top: 0;
-  // left: 0;
 }
 
 h1 {
@@ -337,9 +313,6 @@ label {
 }
 
 div.logo {
-  // content: url('https://png.icons8.com/ultraviolet/540/icosahedron.png') !important;
-  // height: 5% !important;
-  // width: 5% !important;
   margin: auto auto !important;
   font-size: 1.5em !important;
 }
@@ -387,28 +360,6 @@ div.logo {
 
 @keyframes spin { 100% { -webkit-transform: rotate(-360deg); transform:rotate(-360deg); } }
 
-// img.bg {
-//   /* Set rules to fill background */
-//   min-height: 100%;
-//   min-width: 1024px;
-  
-//   /* Set up proportionate scaling */
-//   width: 100%;
-//   height: auto;
-  
-//   /* Set up positioning */
-//   position: fixed;
-//   top: 0;
-//   left: 0;
-// }
-
-// @media screen and (max-width: 1024px) { /* Specific to this particular image */
-//   img.bg {
-//     left: 50%;
-//     margin-left: -512px;   /* 50% */
-//   }
-// }
-
 #bg {
   position: fixed; 
   top: 0; 
@@ -418,6 +369,10 @@ div.logo {
   /* Preserve aspet ratio */
   min-width: 100%;
   min-height: 100%;
+}
+
+.menuBar {
+  margin-bottom: 7% !important;
 }
 
 

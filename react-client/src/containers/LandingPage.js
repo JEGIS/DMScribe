@@ -63,24 +63,21 @@ class LandingPage extends Component {
               <Menu.Menu position='right'>
                 <Menu.Item className='item'>
                   <Button
-                  className="theme-text"
+                  className="theme-text theme-button"
                   onClick={() => {this.props.selectTab('Login')}}
-                  as='a'
-                  primary>Log in!</Button>
+                  as='a'>Log in!</Button>
                 </Menu.Item>
                 <Menu.Item>
                   <Button 
-                  className="theme-text"
+                  className="theme-text theme-button"
                   onClick={() => {this.props.selectTab('Signup')}}
-                  as='a' 
-                  primary>Sign Up!</Button>
+                  as='a'>Sign Up!</Button>
                 </Menu.Item>
                 <Menu.Item>
                   <Button 
-                    className="theme-text"
+                    className="theme-text theme-button"
                     onClick={() => {this.props.selectTab('ForgotPW')}}
-                    as='a' 
-                    primary>Forgot password?
+                    as='a'>Forgot password?
                   </Button>
                 </Menu.Item>
               </Menu.Menu>
