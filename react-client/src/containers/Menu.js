@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import {selectTab, setUser, logoutReset} from '../actions/index';
 import styles from 'styled-components';
-import { Icon } from 'semantic-ui-react';
+import { Icon, Container, Button, Menu } from 'semantic-ui-react';
 
 const Wrapper = styles.div`
   margin: .7% 8%;
@@ -12,7 +12,7 @@ const Wrapper = styles.div`
 
 var tabs = ['Arena', 'Players', 'Monsters'];
 
-class Menu extends Component {
+class MenuX extends Component {
   render () {
     if (this.props.currentTab === 'Landing' 
       || this.props.currentTab === 'Login'
@@ -26,36 +26,61 @@ class Menu extends Component {
       <div className="theme-background">
         {this.props.user 
           ?
-            <div className="ui menu theme-background">
-
-              <a
-                className='item theme-text'
-                onClick={() => {this.props.selectTab('AccountInfo')}}
-                >{this.props.user}
-                <i className="setting icon"></i>
-              </a>
-              <div className="logo theme-text"> DM-Scribe</div>
-              <a
-                onClick={() => {
-                  this.props.setUser('');
-                  this.props.logoutReset();
-                  this.props.selectTab('Landing');
-                }}
-                className="item theme-text"
-              >Log out!</a>
-            </div>  
+          <Menu fixed='top' size='large' className='theme-background'>
+            <Container>
+              <Menu.Menu position='right'>
+                <Menu.Item className='item'>
+                  <Button
+                  className="theme-text theme-button"
+                  onClick={() => {this.props.selectTab('Arena')}}
+                  as='a'> DM-Scribe </Button>
+                </Menu.Item>
+                <Menu.Item className='item'>
+                  <Button
+                  className="theme-text theme-button" 
+                  onClick={() => {this.props.selectTab('AccountInfo')}}
+                  as='a'> {this.props.user}
+                  <i className="setting icon"></i>
+                  </Button>
+                </Menu.Item>
+                <Menu.Item className='item'>
+                  <Button 
+                  className="theme-text theme-button"
+                  onClick={() => {
+                    this.props.setUser('');
+                    this.props.logoutReset();
+                    this.props.selectTab('Landing');
+                  }}
+                  as='a'> Log out! </Button>
+                </Menu.Item>
+              </Menu.Menu>
+            </Container>
+          </Menu>
           :
-            <div className="ui menu theme-background">
-              <a
-                className="item theme-text" 
-                onClick={() => {this.props.selectTab('Login')}}
-              >Login</a>
-              <div className="logo theme-text"> DM-Scribe</div>
-              <a
-                onClick={() => {this.props.selectTab('Signup')}}
-                className="item theme-text"
-              >Sign up</a>
-            </div>  
+          <Menu fixed='top' size='large' className='theme-background'>
+            <Container>
+              <Menu.Menu position='right'>
+                <Menu.Item className='item'>
+                  <Button
+                  className="theme-text theme-button"
+                  onClick={() => {this.props.selectTab('Arena')}}
+                  as='a'> DM-Scribe </Button>
+                </Menu.Item>
+                <Menu.Item className='item'>
+                  <Button
+                  className="theme-text theme-button" 
+                  onClick={() => {this.props.selectTab('Login')}}
+                  as='a'> Login </Button>
+                </Menu.Item>
+                <Menu.Item className='item'>
+                  <Button 
+                  className="theme-text theme-button"
+                  onClick={() => {this.props.selectTab('Signup')}}
+                  as='a'> Sign up </Button>
+                </Menu.Item>
+              </Menu.Menu>
+            </Container>
+          </Menu>
           }
         </div>
       </Wrapper>
@@ -78,4 +103,6 @@ function mapDispatchToProps (dispatch) {
   }, dispatch);
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Menu);
+export default connect(mapStateToProps, mapDispatchToProps)(MenuX);
+
+
