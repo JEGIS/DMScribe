@@ -68,9 +68,11 @@ class OrderList extends Component {
                       </Card>
                     )
                 })}
-        <Button content="Move Player Left"  onClick={this.pushLeft} />
-        <Button content="Move Player Right" onClick={this.pushRight}/>
         </Card.Group>
+        <div className="buttonsWrapper">
+        <Button className= "theme-button" content="Move Player Left" onClick={this.pushLeft} />
+        <Button className= "theme-button" content="Move Player Right" onClick={this.pushRight} />
+        </div>
       </div>
     );
   }
