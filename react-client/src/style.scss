@@ -285,9 +285,10 @@ label {
 }
 
 .roll{
+  float: left;
   position: relative;
   text-align: center;
-  margin: 15px auto;
+  margin: 15px 10px;
   color: white;
   font-family: helvetica;
   font-size: 24px;
@@ -326,11 +327,6 @@ div.logo {
   background-image: radial-gradient(#ffcc66, #663300) !important;//radial-gradient(#ffcc66, #663300) !important;  
 }
 
-.dicePic {
-  float: left;
-  margin: 10px 10px;
-}
-
 .theme-text {
   font-family: 'Inknut Antiqua', serif !important;
   font-size: 1em !important;
@@ -339,11 +335,12 @@ div.logo {
 
 .example-enter {
   opacity: 0.01;
+  margin-left: 1000px;
   transition: width 2s, height 2s, transform 2s;
-
 }
 
 .example-enter.example-enter-active {
+  margin-left:0px;
   opacity: 1;
   animation:spin 500ms linear infinite;
   transition: 1000ms, transform 2s;
@@ -358,7 +355,7 @@ div.logo {
   transition: opacity 300ms ease-in;
 }
 
-@keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
+@keyframes spin { 100% { -webkit-transform: rotate(-360deg); transform:rotate(-360deg); } }
 
 
 
