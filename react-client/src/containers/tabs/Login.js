@@ -71,31 +71,27 @@ class Login extends Component {
               <Menu.Menu position='right'>
                 <Menu.Item className='item'>
                   <Button
-                  className="theme-text"
+                  className="theme-text theme-button"
                   onClick={() => {this.props.selectTab('Landing')}}
-                  as='a'
-                  primary>Back to landing page</Button>
+                  as='a'>Back to landing page</Button>
                 </Menu.Item>
                 <Menu.Item className='item'>
                   <Button
-                  className="theme-text"
+                  className="theme-text theme-button"
                   onClick={() => {this.props.selectTab('Login')}}
-                  as='a'
-                  primary>Log in</Button>
+                  as='a'>Log in</Button>
                 </Menu.Item>
                 <Menu.Item>
                   <Button 
-                  className="theme-text"
+                  className="theme-text theme-button"
                   onClick={() => {this.props.selectTab('Signup')}}
-                  as='a' 
-                  primary>Sign Up</Button>
+                  as='a'>Sign Up</Button>
                 </Menu.Item>
                 <Menu.Item>
                   <Button 
-                  className="theme-text"
+                  className="theme-text theme-button"
                   onClick={() => {this.props.selectTab('ForgotPW')}}
-                  as='a' 
-                  primary>Forgot password?</Button>
+                  as='a'>Forgot password?</Button>
                 </Menu.Item>
               </Menu.Menu>
             </Container>
@@ -111,7 +107,7 @@ class Login extends Component {
                   <label>Password:</label>
                   <input type="password" name="password" id='loginPassword' placeholder="enter password"/>
                 </div>
-                <Button className="ui button theme-text" type="submit">Login!</Button>
+                <Button className="ui button theme-text theme-button" type="submit">Login!</Button>
               </form>
             </Grid.Column>
           </Grid>

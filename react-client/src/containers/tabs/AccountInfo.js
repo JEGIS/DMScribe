@@ -85,34 +85,37 @@ class AccountInfo extends Component {
       return null;
     }
     return (
-      <Grid centered columns={5}>
-        <Grid.Column className="test">
+      <div>
+        <img src="https://i.imgur.com/f60kcjD.jpg" id="bg" alt=""/>
+        <Grid centered columns={5}>
+          <Grid.Column className="test">
 
-          <Form className="ui form signupForm" onSubmit={(event) => {this.changePassword(event)}}>
-            <div> Change Password:
-              <input placeholder="confirm username" name="username" id="username1"/>
-            </div>
-            <div>
-              <input placeholder="confirm email" name="email" id="email1"/>
-            </div>
-            <div>
-              <input placeholder="new password" name="password" id="password1"/>
-            </div>
-            <span><Button className="ui button" type="submit">Submit</Button></span>
-          </Form>
+            <Form className="ui form signupForm" onSubmit={(event) => {this.changePassword(event)}}>
+              <div> Change Password:
+                <input placeholder="confirm username" name="username" id="username1"/>
+              </div>
+              <div>
+                <input placeholder="confirm email" name="email" id="email1"/>
+              </div>
+              <div>
+                <input placeholder="new password" name="password" id="password1"/>
+              </div>
+              <span><Button className="ui button" type="submit">Submit</Button></span>
+            </Form>
 
-          <Form className="ui form signupForm" onSubmit={(event) => {this.changeEmail(event)}}>
-            <div> Change Email:
-              <input placeholder="enter username" name="username" id="username2"/>
-            </div>
-            <div>
-              <input placeholder="enter new email" name="email" id="email2"/>
-            </div>
-            <Button className="ui button" type="submit">Submit</Button>
-          </Form>
+            <Form className="ui form signupForm" onSubmit={(event) => {this.changeEmail(event)}}>
+              <div> Change Email:
+                <input placeholder="enter username" name="username" id="username2"/>
+              </div>
+              <div>
+                <input placeholder="enter new email" name="email" id="email2"/>
+              </div>
+              <Button className="ui button" type="submit">Submit</Button>
+            </Form>
 
-        </Grid.Column>
-      </Grid>
+          </Grid.Column>
+        </Grid>
+      </div>
     );
   }
 }
