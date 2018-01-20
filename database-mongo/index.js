@@ -39,6 +39,9 @@ var User = mongoose.model('User', users);
 var Player = mongoose.model('Player', players);
 
 var signUpUser = (user, callback) => {
+  if (user.email === undefined) {
+    user.email = null;
+  }
   var userEntry = new User({username: user.username, password: user.password, email: user.email}); // changed
   userEntry.save((error, model) => {
     if (error) {
