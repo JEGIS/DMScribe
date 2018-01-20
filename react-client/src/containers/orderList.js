@@ -2,33 +2,44 @@ import React, { Component } from 'react';
 import { Card, Icon, Image } from 'semantic-ui-react'
 import { connect } from 'react-redux';
 import { Button } from 'semantic-ui-react';
-import { populateMonsterUrls } from '../actions/index.js';
+import { playerDefersTurn } from '../actions/index.js';
 
 class OrderList extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-        selected: null
-    };
+    this.selected = null;
     this.pushLeft = this.pushLeft.bind(this);
     this.pushRight = this.pushRight.bind(this);
   }
 
   handleClick(event, i) {
-    this.setState({ selected: i });
+    this.selected = i;
   }
 
   pushLeft() {
-    if (this.state.selected) {
-      var i = this.state.selected;
-      var temp = this.props.turnOrder[i-1];
-      this.props.turnOrder[i-1] = this.props.turnOrder[i];
-      this.props.turnOrder[i] = temp;
+    if (this.selected !== null) {
+      var copy = this.props.turnOrder.slice();
+      var i = this.selected;
+      var j = ((i - 1) + copy.length) % copy.length;
+      var temp = copy[j];
+      copy[j] = copy[i];
+      copy[i] = temp;
+      this.selected = j;
+      playerDefersTurn(copy);
     }
   }
 
   pushRight() {
-
+    if (this.selected !== null) {
+      var copy = this.props.turnOrder.slice();
+      var i = this.selected;
+      var j = (i + 1) % copy.length;
+      var temp = copy[j];
+      copy[j] = copy[i];
+      copy[i] = temp;
+      this.selected = j;
+      playerDefersTurn(copy);
+    }
   }
  
   render () {
@@ -57,8 +68,8 @@ class OrderList extends Component {
                       </Card>
                     )
                 })}
-        <Button content="Move Player Left" />
-        <Button content="Move Player Right" />
+        <Button content="Move Player Left"  onClick={this.pushLeft} />
+        <Button content="Move Player Right" onClick={this.pushRight}/>
         </Card.Group>
       </div>
     );
@@ -68,7 +79,6 @@ class OrderList extends Component {
 function mapStateToProps (state) {
   return {
     turnOrder: state.turnOrder,
-    myaction: populateMonsterUrls
   }
 }
 

@@ -2,6 +2,14 @@ import store from '../store';
 import axios from 'axios';
 import $ from 'jquery';
 
+export const playerDefersTurn = (newOrder) => {
+  console.log('turns reordered');
+  store.dispatch({
+    type: 'DEFER_TURN',
+    payload: newOrder
+  });
+};
+
 //This function queries the API for a list of all available monsters
 //which is then sent to reducer to be formatted appropriately to be used by our dropdown
 export const populateMonsterUrls = () => {
