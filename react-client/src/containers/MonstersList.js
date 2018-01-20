@@ -178,7 +178,7 @@ class MonstersList extends Component {
                               this.props.removeMonster(monster.id);
                             } else {
                               this.props.removeMonster(monster.id);
-                              this.props.generateTurnOrder();                              
+                              //this.props.generateTurnOrder();                              
                             }
                           }} 
                           className='deleteMonsterIcon' 
